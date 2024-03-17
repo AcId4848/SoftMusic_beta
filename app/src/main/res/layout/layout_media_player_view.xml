@@ -4,11 +4,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        layout="@layout/layout_media_player_bar" />
-
-    <include
-        layout="@layout/layout_media_player_view" />
-
-    
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

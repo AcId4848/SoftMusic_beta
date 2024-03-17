@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_dynamic_primary60">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="6dp">
 
-</FrameLayout>
+    <com.realgear.readable_bottom_bar.ReadableBottomBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navigation_bar_height"
+        android:background="#212C2B"
+        android:clickable="true"
+        app:rbb_selectedTabType="text"
+        app:rbb_indicatorAppearance="round"
+        app:rbb_indicatorStyle="normal"
+        app:rbb_indicatorMargin="20dp"
+        app:rbb_indicatorHeight="4dp"
+        app:rbb_tabs="@menu/navigation_bar_tabs"
+        app:rbb_selectedIndex="0"
+        app:rbb_tabColor="#318331"
+        app:rbb_indicatorColor="#1AC51A"
+        app:rbb_tabColorSelected="#1AC51A"
+        app:rbb_textStyle="bold"
+        app:rbb_textSize="16sp"
+        app:rbb_iconSize="30dp"
+        />
+</androidx.cardview.widget.CardView>

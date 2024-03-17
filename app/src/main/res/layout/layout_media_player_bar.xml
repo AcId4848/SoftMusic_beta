@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@+id/media_player_bar_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/mediaplayerbar_height"
+    android:padding="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="0dp"
+        app:cardBackgroundColor="#000000"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp">
+        
+        <FrameLayout
+            android:id="@+id/media_player_bar_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#61827F" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="6dp"
+            android:orientation="vertical">
+            
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/media_player_bar_progress_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="45"
+                app:trackThickness="2dp"
+                app:trackCornerRadius="6dp"
+                app:trackColor="#3E3E3E"
+                app:indicatorColor="#00FF00"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="6dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/image_view_music_file_art"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:elevation="0dp"
+                    app:cardBackgroundColor="@color/black"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/audio_file_40px"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>
