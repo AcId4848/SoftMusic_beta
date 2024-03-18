@@ -1,7 +1,298 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/media_player_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/media_player_controls_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="25dp"
+        android:background="#2C3328">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_header_container"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@null"
+                android:scaleType="center"
+                android:src="@drawable/expand_more_40px"
+                app:tint="@color/white"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Сейчас играет"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/btn_back"
+                app:layout_constraintEnd_toEndOf="@id/btn_more">
+
+            </TextView>
+
+            <ImageButton
+                android:id="@+id/btn_more"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@null"
+                android:scaleType="center"
+                android:src="@drawable/more_vert_40px"
+                app:tint="@color/white"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_artist_art_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="8dp"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintTop_toBottomOf="@id/layout_header_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_desc_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_view_artist_art_container">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="Song"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Artist"
+                    android:textColor="#CFCFCF"
+                    android:textSize="18sp"
+                    android:gravity="start"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btn_favorite"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@null"
+                android:src="@drawable/favorite_40px"
+                android:scaleX="1.26"
+                android:scaleY="1.26"
+                app:tint="@color/white"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_controls_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/layout_desc_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:thumbTint="#00FF00"
+                    android:progressTint="#00FF00"
+                    android:progressBackgroundTint="#888888"
+                    android:progress="25"
+                    android:max="100"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0:44"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text="4:44"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"/>
+
+                </FrameLayout>
+
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8dp"
+                android:clipToPadding="false"
+                android:clipChildren="false">
+
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/btn_repeat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="0dp"
+                    android:shadowColor="#000000"
+                    app:iconTint="@color/white"
+                    android:backgroundTint="#2C3328"
+                    app:elevation="0dp"
+                    app:collapsedSize="40dp"
+                    app:icon="@drawable/repeat_40px"
+                    app:iconSize="34dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/btn_skip_previous"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="0dp"
+                    android:shadowColor="#000000"
+                    app:iconTint="@color/white"
+                    android:backgroundTint="#2C3328"
+                    app:elevation="0dp"
+                    app:collapsedSize="40dp"
+                    app:icon="@drawable/skip_previous_40px"
+                    app:iconSize="34dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btn_play_pause"
+                    app:layout_constraintStart_toEndOf="@+id/btn_repeat"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/btn_play_pause"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="0dp"
+                    android:shadowColor="#000000"
+                    app:iconTint="@color/white"
+                    android:backgroundTint="#2C3328"
+                    app:elevation="0dp"
+                    app:collapsedSize="67dp"
+                    app:icon="@drawable/play_arrow_40px"
+                    app:iconSize="65dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btn_skip_next"
+                    app:layout_constraintStart_toEndOf="@id/btn_skip_previous"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/btn_skip_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="0dp"
+                    android:shadowColor="#000000"
+                    app:iconTint="@color/white"
+                    android:backgroundTint="#2C3328"
+                    app:elevation="0dp"
+                    app:collapsedSize="40dp"
+                    app:icon="@drawable/skip_next_40px"
+                    app:iconSize="34dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_play_pause"
+                    app:layout_constraintEnd_toStartOf="@id/btn_shuffle"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/btn_shuffle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="0dp"
+                    android:shadowColor="#000000"
+                    app:iconTint="@color/white"
+                    android:backgroundTint="#2C3328"
+                    app:elevation="0dp"
+                    app:collapsedSize="40dp"
+                    app:icon="@drawable/shuffle_40px"
+                    app:iconSize="34dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_goneMarginLeft="0dp"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/media_player_bottom_sheet_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.example.extensions.bottomsheet.CustomBottomSheetBehavior"
+        app:behaviour_defaultState="collapsed"
+        app:behavior_peekHeight="32dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="6dp"
+            style="@style/CustomCardViewStyle">
+
+        </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
