@@ -54,18 +54,6 @@ public class RootMediaPlayerPanel extends BasePanelView {
         mMediaPlayerView = new MediaPlayerView(findViewById(R.id.media_player_view));
         mMediaPlayerBarView = new MediaPlayerBarView(findViewById(R.id.media_player_bar_view));
 
-        rootViewPager = getMultiSlidingUpPanel().findViewById(R.id.root_view_pager);
-        rootNavigationBar = getMultiSlidingUpPanel().findViewById(R.id.root_navigation_bar);
-
-        StateFragmentAdapter adapter = new StateFragmentAdapter(getSupportFragmentManager(), getLifecycle());
-
-        adapter.addFragment(new FragmentHome());
-        adapter.addFragment(new FragmentLibrary());
-        adapter.addFragment(new FragmentAllMusic());
-
-        rootViewPager.setAdapter(adapter);
-        rootNavigationBar.setupWithViewPager2(rootViewPager);
-
         DisplayMetrics dm = getResources().getDisplayMetrics();
         FrameLayout layout = findViewById(R.id.media_player_bottom_sheet_behavior);
 
@@ -99,8 +87,8 @@ public class RootMediaPlayerPanel extends BasePanelView {
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                mMediaPlayerView.onSliding(slidingOffset, MediaPlayerView.STATE_PARTIAL);
-                mMediaPlayerBarView.onSliding(slidingOffset, MediaPlayerBarView.STATE_PARTIAL);
+                mMediaPlayerView.onSliding(slideOffset, MediaPlayerView.STATE_PARTIAL);
+                mMediaPlayerBarView.onSliding(slideOffset, MediaPlayerBarView.STATE_PARTIAL);
             }
         });
 

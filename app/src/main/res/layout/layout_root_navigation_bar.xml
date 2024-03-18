@@ -7,6 +7,7 @@
     app:cardCornerRadius="6dp">
 
     <com.realgear.readable_bottom_bar.ReadableBottomBar
+        android:id="@+id/root_navigation_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/navigation_bar_height"
         android:background="#212C2B"

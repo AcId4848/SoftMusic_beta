@@ -38,7 +38,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test,espresso:espresso-core:3.5.1'
 
-    implementation 'com.github.realgearinc:multi-sliding-up-panel:1.2.3'
+    implementation 'com.github.realgearinc:multi-sliding-up-panel:1.2.4'
     implementation 'com.github.realgearinc:readable-bottom-bar:1.0.2'
 
     implementation project(path: ':lib:extensions')

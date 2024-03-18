@@ -36,7 +36,7 @@ public class RootNavigationBarPanel extends BasePanelView {
 
     @Override
     public void onBindView() {
-        rootViewPager = findViewById(R.id.root_view_pager);
+        rootViewPager = getMultiSlidingUpPanel().findViewById(R.id.root_view_pager);
         rootNavigationBar = findViewById(R.id.root_navigation_bar);
 
         StateFragmentAdapter adapter = new StateFragmentAdapter(getSupportFragmentManager(), getLifecycle());

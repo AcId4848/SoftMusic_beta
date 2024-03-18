@@ -25,7 +25,7 @@ public class MediaPlayerBarView {
     public MediaPlayerBarView(View rootView) {
         this.mRootView = rootView;
 
-        this.mBottomSheet = findViewById(R.id.media_player_bar_bg);
+        this.mBackgroundView = findViewById(R.id.media_player_bar_bg);
         this.mControlsContainer = findViewById(R.id.media_player_controls_container);
         this.mProgressIndicator = findViewById(R.id.media_player_bar_progress_indicator);
 
@@ -34,7 +34,7 @@ public class MediaPlayerBarView {
 
     public void onSliding(float slideOffset, int state) {
         float fadeStart = 0.25F;
-        float alpha = (slideOffset - fadeStart) * (1F / (1F - fadeStart));
+        float alpha = (slideOffset - fadeStart);
 
         if (state == STATE_NORMAL) {
             this.mRootView.setAlpha(1F - alpha);
