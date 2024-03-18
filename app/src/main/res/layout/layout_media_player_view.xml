@@ -283,16 +283,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.example.extensions.bottomsheet.CustomBottomSheetBehavior"
-        app:behaviour_defaultState="collapsed"
         app:behavior_peekHeight="32dp">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="6dp"
-            style="@style/CustomCardViewStyle">
+            style="@style/CustomCardViewStyle"/>
 
-        </com.google.android.material.card.MaterialCardView>
     </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

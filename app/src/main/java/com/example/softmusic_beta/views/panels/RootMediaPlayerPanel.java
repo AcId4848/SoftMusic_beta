@@ -1,6 +1,7 @@
 package com.example.softmusic_beta.views.panels;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,15 +9,30 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.extensions.bottomsheet.CustomBottomSheetBehavior;
 import com.example.softmusic_beta.R;
+import com.example.softmusic_beta.ui.adapters.StateFragmentAdapter;
+import com.example.softmusic_beta.ui.fragments.FragmentAllMusic;
+import com.example.softmusic_beta.ui.fragments.FragmentHome;
+import com.example.softmusic_beta.ui.fragments.FragmentLibrary;
+import com.example.softmusic_beta.views.MediaPlayerBarView;
+import com.example.softmusic_beta.views.MediaPlayerView;
 import com.realgear.multislidinguppanel.BasePanelView;
 import com.realgear.multislidinguppanel.Adapter;
+import com.realgear.multislidinguppanel.IPanel;
 import com.realgear.multislidinguppanel.MultiSlidingUpPanelLayout;
+import com.realgear.readable_bottom_bar.ReadableBottomBar;
 
 public class RootMediaPlayerPanel extends BasePanelView {
 
+    private ViewPager2 rootViewPager;
+    private ReadableBottomBar rootNavigationBar;
+
+    private MediaPlayerView mMediaPlayerView;
+
+    private MediaPlayerBarView mMediaPlayerBarView;
 
     public RootMediaPlayerPanel(@NonNull Context context, MultiSlidingUpPanelLayout panelLayout) {
         super(context, panelLayout);
@@ -35,6 +51,21 @@ public class RootMediaPlayerPanel extends BasePanelView {
 
     @Override
     public void onBindView() {
+        mMediaPlayerView = new MediaPlayerView(findViewById(R.id.media_player_view));
+        mMediaPlayerBarView = new MediaPlayerBarView(findViewById(R.id.media_player_bar_view));
+
+        rootViewPager = getMultiSlidingUpPanel().findViewById(R.id.root_view_pager);
+        rootNavigationBar = getMultiSlidingUpPanel().findViewById(R.id.root_navigation_bar);
+
+        StateFragmentAdapter adapter = new StateFragmentAdapter(getSupportFragmentManager(), getLifecycle());
+
+        adapter.addFragment(new FragmentHome());
+        adapter.addFragment(new FragmentLibrary());
+        adapter.addFragment(new FragmentAllMusic());
+
+        rootViewPager.setAdapter(adapter);
+        rootNavigationBar.setupWithViewPager2(rootViewPager);
+
         DisplayMetrics dm = getResources().getDisplayMetrics();
         FrameLayout layout = findViewById(R.id.media_player_bottom_sheet_behavior);
 
@@ -58,17 +89,18 @@ public class RootMediaPlayerPanel extends BasePanelView {
                     case CustomBottomSheetBehavior.STATE_ANCHORED:
                     case CustomBottomSheetBehavior.STATE_EXPANDED:
                     case CustomBottomSheetBehavior.STATE_DRAGGING:
-                        mParentSlidingPanel.setSlidingEnabled(false);
+                        getMultiSlidingUpPanel().setSlidingEnabled(false);
                         break;
 
                     default:
-                        mParentSlidingPanel.setSlidingEnabled(true);
+                        getMultiSlidingUpPanel().setSlidingEnabled(true);
                 }
             }
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
+                mMediaPlayerView.onSliding(slidingOffset, MediaPlayerView.STATE_PARTIAL);
+                mMediaPlayerBarView.onSliding(slidingOffset, MediaPlayerBarView.STATE_PARTIAL);
             }
         });
 
@@ -77,5 +109,13 @@ public class RootMediaPlayerPanel extends BasePanelView {
     @Override
     public void onPanelStateChanged(int i) {
 
+    }
+
+    @Override
+    public void onSliding(@NonNull IPanel<View> panel, int top, int dy, float slidingOffset) {
+        super.onSliding(panel, top, dy, slidingOffset);
+
+        mMediaPlayerView.onSliding(slidingOffset, MediaPlayerView.STATE_NORMAL);
+        mMediaPlayerBarView.onSliding(slidingOffset, MediaPlayerBarView.STATE_NORMAL);
     }
 }
