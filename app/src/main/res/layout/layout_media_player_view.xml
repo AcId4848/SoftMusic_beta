@@ -215,12 +215,12 @@
                     app:icon="@drawable/skip_previous_40px"
                     app:iconSize="34dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/btn_play_pause"
+                    app:layout_constraintEnd_toStartOf="@id/btn_play_pause_big"
                     app:layout_constraintStart_toEndOf="@+id/btn_repeat"
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                    android:id="@+id/btn_play_pause"
+                    android:id="@+id/btn_play_pause_big"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:elevation="0dp"
@@ -249,7 +249,7 @@
                     app:icon="@drawable/skip_next_40px"
                     app:iconSize="34dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/btn_play_pause"
+                    app:layout_constraintStart_toEndOf="@id/btn_play_pause_big"
                     app:layout_constraintEnd_toStartOf="@id/btn_shuffle"
                     app:layout_constraintTop_toTopOf="parent"/>
 

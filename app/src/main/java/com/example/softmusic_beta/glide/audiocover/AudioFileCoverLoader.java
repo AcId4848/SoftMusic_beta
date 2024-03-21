@@ -15,7 +15,7 @@ public class AudioFileCoverLoader implements ModelLoader<AudioFileCover, InputSt
 
     @Nullable
     @Override
-    public LoadData<InputStream> buildLoadData(@NonNull AudioFileCover audioFileCover, int width, int height) {
+    public LoadData<InputStream> buildLoadData(@NonNull AudioFileCover audioFileCover, int width, int height, @NonNull Options options) {
         return new LoadData<>(new ObjectKey(audioFileCover.getFilePath()), new AudioFileCoverFetcher(audioFileCover));
     }
 
