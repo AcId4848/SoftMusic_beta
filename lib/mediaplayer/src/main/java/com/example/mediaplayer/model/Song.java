@@ -1,22 +1,22 @@
 package com.example.mediaplayer.model;
 
 public class Song {
-    private long Id;
-    private String Title;
-    private long Duration;
-    private String Data;
-    private String AlbumName;
-    private String ArtistName;
-    private String DisplayName;
+    private long m_vId;
+    private String m_vTitle;
+    private long m_vDuration;
+    private String m_vData;
+    private String m_vAlbumName;
+    private String m_vArtistName;
+    private String m_vDisplayName;
 
     public Song(long id, String title, long duration, String data, String albumName, String artistName, String displayName) {
-        this.Id = id;
-        this.Title = title;
-        this.Duration = duration;
-        this.Data = data;
-        this.AlbumName = albumName;
-        this.ArtistName = artistName;
-        this.DisplayName = displayName;
+        this.m_vId = id;
+        this.m_vTitle = title;
+        this.m_vDuration = duration;
+        this.m_vData = data;
+        this.m_vAlbumName = albumName;
+        this.m_vArtistName = artistName;
+        this.m_vDisplayName = displayName;
     }
 
     public static Song emptySong() {
@@ -24,30 +24,30 @@ public class Song {
     }
 
     public long getId() {
-        return Id;
+        return m_vId;
     }
 
     public String getTitle() {
-        return Title;
+        return m_vTitle;
     }
 
     public long getDuration() {
-        return Duration;
+        return m_vDuration;
     }
 
     public String getData() {
-        return Data;
+        return m_vData;
     }
 
     public String getAlbumName() {
-        return AlbumName;
+        return m_vAlbumName;
     }
 
     public String getArtistName() {
-        return ArtistName;
+        return m_vArtistName;
     }
 
     public String getDisplayName() {
-        return DisplayName;
+        return m_vDisplayName;
     }
 }

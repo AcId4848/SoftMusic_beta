@@ -7,19 +7,19 @@ import androidx.annotation.Nullable;
 import java.util.Objects;
 
 public class AudioFileCover {
-    private String Path;
+    private String m_vPath;
 
     public AudioFileCover(String path) {
-        this.Path = path;
+        this.m_vPath = path;
     }
 
     public String getFilePath() {
-        return this.Path;
+        return this.m_vPath;
     }
 
     @Override
     public int hashCode() {
-        return this.Path.hashCode();
+        return this.m_vPath.hashCode();
     }
 
     @Override
@@ -27,7 +27,7 @@ public class AudioFileCover {
         if (!(obj instanceof AudioFileCover))
             return false;
 
-        return Objects.equals(((AudioFileCover)obj).Path, this.Path);
+        return Objects.equals(((AudioFileCover)obj).m_vPath, this.m_vPath);
     }
 
 

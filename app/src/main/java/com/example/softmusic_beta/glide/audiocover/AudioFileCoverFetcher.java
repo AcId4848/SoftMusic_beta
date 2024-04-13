@@ -14,26 +14,26 @@ import java.io.InputStream;
 
 public class AudioFileCoverFetcher implements DataFetcher<InputStream> {
 
-    private final AudioFileCover Model;
+    private final AudioFileCover m_vModel;
 
-    private InputStream Stream;
+    private InputStream m_vStream;
 
     public AudioFileCoverFetcher(AudioFileCover model) {
-        this.Model = model;
-        this.Stream = null;
+        this.m_vModel = model;
+        this.m_vStream = null;
     }
 
     @Override
     public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super InputStream> callback) {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         try {
-            retriever.setDataSource(this.Model.getFilePath());
+            retriever.setDataSource(this.m_vModel.getFilePath());
             byte[] data = retriever.getEmbeddedPicture();
 
             if (data != null && data.length > 0)
-                this.Stream = new ByteArrayInputStream(data);
+                this.m_vStream = new ByteArrayInputStream(data);
 
-            callback.onDataReady(this.Stream);
+            callback.onDataReady(this.m_vStream);
         }
         catch (Exception ex) {
             callback.onLoadFailed(ex);
@@ -48,9 +48,9 @@ public class AudioFileCoverFetcher implements DataFetcher<InputStream> {
 
     @Override
     public void cleanup() {
-        if (this.Stream != null) {
+        if (this.m_vStream != null) {
             try {
-                this.Stream.close();
+                this.m_vStream.close();
             }
             catch (Exception ignore) {
 

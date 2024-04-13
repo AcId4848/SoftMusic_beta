@@ -15,12 +15,12 @@ import java.util.List;
 
 public class UIThread {
 
-    private final MainActivity MainActivity;
+    private final MainActivity m_vMainActivity;
 
-    private MultiSlidingUpPanelLayout MultiSlidingPanel;
+    private MultiSlidingUpPanelLayout m_vMultiSlidingPanel;
 
     public UIThread(MainActivity activity) {
-        this.MainActivity = activity;
+        this.m_vMainActivity = activity;
 
         onCreate();
     }
@@ -34,13 +34,13 @@ public class UIThread {
         items.add(RootMediaPlayerPanel.class);
         items.add(RootNavigationBarPanel.class);
 
-        panelLayout.setPanelStateListener(new PanelStateListener(panelLayout) {});
+        panelLayout.setPanelStateListener(new PanelStateListener(panelLayout));
 
-        panelLayout.setAdapter(new Adapter(this.MainActivity, items));
+        panelLayout.setAdapter(new Adapter(this.m_vMainActivity, items));
     }
 
     public <T extends android.view.View> T findViewById(@IdRes int id) {
-        return this.MainActivity.findViewById(id);
+        return this.m_vMainActivity.findViewById(id);
 
     }
 }

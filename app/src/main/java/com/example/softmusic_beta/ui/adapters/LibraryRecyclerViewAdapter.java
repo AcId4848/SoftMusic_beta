@@ -27,8 +27,9 @@ public class LibraryRecyclerViewAdapter extends BaseRecyclerViewAdapter{
         switch (itemType) {
             case SONG:
                 return new SongViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_song_layout_sample, parent, false), BaseViewHolder.ViewType.LIST);
+
+            default:
+                return null;
         }
-        default:
-            return null;
     }
 }

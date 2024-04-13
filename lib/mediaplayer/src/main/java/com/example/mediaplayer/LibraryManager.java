@@ -39,9 +39,8 @@ public class LibraryManager {
                 String data = getCursorStringByIndex(cursor, "_data");
                 long duration = getCursorLongByIndex(cursor, "duration");
 
-                if (artistName == null || artistName.isEmpty()) {
+                if (artistName == null || artistName.isEmpty())
                     artistName = "<no_name>";
-                }
 
                 if (displayName.contains("AUD-") && !title.isEmpty())
                     displayName = title;
@@ -56,9 +55,8 @@ public class LibraryManager {
                         displayName));
             }
         }
-        if (cursor != null) {
+        if (cursor != null)
             cursor.close();
-        }
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

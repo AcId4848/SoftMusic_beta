@@ -26,16 +26,16 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private UIThread Thread;
+    private UIThread m_vThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
         PermissionManager.requestPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE, 100);
         PermissionManager.requestPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE, 100);
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             if (!Environment.isExternalStorageEmulated()) {
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        this.Thread = new UIThread(this);
+        this.m_vThread = new UIThread(this);
 
     }
 }

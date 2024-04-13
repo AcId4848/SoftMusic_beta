@@ -14,12 +14,12 @@ public abstract class  BaseViewHolder extends RecyclerView.ViewHolder {
         LIST
     }
 
-    private final ViewType ViewType;
+    private final ViewType m_vViewType;
 
     public BaseViewHolder(@NonNull View itemView, ViewType viewType) {
         super(itemView);
 
-        this.ViewType = viewType;
+        this.m_vViewType = viewType;
     }
 
     public abstract void onBindViewHolder(BaseRecyclerViewItem viewItem);

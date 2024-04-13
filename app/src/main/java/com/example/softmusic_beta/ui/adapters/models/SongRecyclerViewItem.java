@@ -4,16 +4,16 @@ import com.example.mediaplayer.model.Song;
 
 public class SongRecyclerViewItem extends BaseRecyclerViewItem {
 
-    private Song Item;
+    private Song m_vItem;
 
     public SongRecyclerViewItem(Song song) {
         super(song.getTitle(), ItemType.SONG);
 
-        this.Item = song;
+        this.m_vItem = song;
     }
 
     public String getFilePath() {
-        return this.Item.getData();
+        return this.m_vItem.getData();
     }
 
 

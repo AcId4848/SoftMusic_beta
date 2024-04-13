@@ -8,10 +8,10 @@ android {
 
     defaultConfig {
         applicationId "com.example.softmusic_beta"
-        minSdk 26
+        minSdk 30
         targetSdk 34
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -47,13 +47,12 @@ dependencies {
     implementation project(path: ':lib:icons_pack')
     implementation project(path: ':lib:mediaplayer')
 
-    def lifecycle_version = "2.7.0"
     def room_version = "2.5.1"
     def glide_version = "4.15.1"
 
-    implementation libs.lifecycle.viewmodel.ktx
-    implementation libs.lifecycle.livedata.ktx
-    implementation "android.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.6.1"
 
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"

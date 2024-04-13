@@ -12,34 +12,34 @@ import java.util.List;
 
 public class StateFragmentAdapter extends FragmentStateAdapter {
 
-    private final List<Fragment> mItems;
+    private final List<Fragment> m_vItems;
 
-    private final FragmentManager mFragmentManager;
+    private final FragmentManager m_vFragmentManager;
 
 
     public StateFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
 
-        this.mItems = new ArrayList<>();
-        this.mFragmentManager = fragmentManager;
+        this.m_vItems = new ArrayList<>();
+        this.m_vFragmentManager = fragmentManager;
     }
 
     public void addFragment(Fragment fragment) {
-        this.mItems.add(fragment);
+        this.m_vItems.add(fragment);
     }
 
     public Fragment getFragment(int position) {
-        return this.mItems.get(position);
+        return this.m_vItems.get(position);
     }
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return this.mItems.get(position);
+        return this.m_vItems.get(position);
     }
 
     @Override
     public int getItemCount() {
-        return this.mItems.size();
+        return this.m_vItems.size();
     }
 }
