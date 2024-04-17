@@ -43,7 +43,7 @@ public class RootNavigationBarPanel extends BasePanelView {
 
         adapter.addFragment(new FragmentHome());
         adapter.addFragment(new FragmentLibrary());
-        adapter.addFragment(new FragmentAllMusic());
+        adapter.addFragment(FragmentAllMusic.class);
 
         rootViewPager.setAdapter(adapter);
         rootNavigationBar.setupWithViewPager2(rootViewPager);

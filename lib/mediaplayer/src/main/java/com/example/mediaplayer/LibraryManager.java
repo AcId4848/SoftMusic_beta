@@ -3,12 +3,15 @@ package com.example.mediaplayer;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaDescription;
 import android.media.MediaMetadata;
+import android.media.MediaMetadataRetriever;
 import android.provider.MediaStore;
 
 import com.example.mediaplayer.model.Song;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -116,7 +119,21 @@ public class LibraryManager {
     }
 
     private static Bitmap getSongArt(Song song) {
-        return null;
+        try {
+            MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+            retriever.setDataSource(song.getData());
+            byte[] data = retriever.getEmbeddedPicture();
+
+            if (data != null && data.length > 0) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                return bitmap;
+            } else {
+                return null;
+            }
+        }
+        catch (Exception ignore) {
+            return null;
+        }
     }
 
 }
