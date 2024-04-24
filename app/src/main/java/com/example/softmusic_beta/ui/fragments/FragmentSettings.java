@@ -14,9 +14,6 @@ import androidx.fragment.app.Fragment;
 import com.example.softmusic_beta.R;
 
 public class FragmentSettings extends Fragment {
-    public FragmentSettings(String value) {
-        Log.d("FragmentSettings", "Value Parsed In :" + value);
-    }
 
     @Nullable
     @Override

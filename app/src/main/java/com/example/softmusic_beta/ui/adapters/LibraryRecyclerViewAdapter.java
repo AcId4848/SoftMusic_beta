@@ -1,13 +1,10 @@
 package com.example.softmusic_beta.ui.adapters;
 
-import static com.example.softmusic_beta.ui.adapters.models.BaseRecyclerViewItem.ItemType.SONG;
-
-import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.example.softmusic_beta.R;
+import com.example.softmusic_beta.ui.adapters.helpers.BaseViewHelper;
 import com.example.softmusic_beta.ui.adapters.models.BaseRecyclerViewItem;
 import com.example.softmusic_beta.ui.adapters.viewholders.BaseViewHolder;
 import com.example.softmusic_beta.ui.adapters.viewholders.SongViewHolder;
@@ -26,7 +23,7 @@ public class LibraryRecyclerViewAdapter extends BaseRecyclerViewAdapter{
 
         switch (itemType) {
             case SONG:
-                return new SongViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_song_layout_sample, parent, false), BaseViewHolder.ViewType.LIST);
+                return BaseViewHelper.onCreateViewHolder(SongViewHolder.class, parent);
 
             default:
                 return null;

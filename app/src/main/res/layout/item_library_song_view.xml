@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_root_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/item_library_song_padding"
+    android:paddingHorizontal="@dimen/item_library_song_padding"
+    android:orientation="horizontal">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_song_art_image_view_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/item_library_song_art_size"
+        android:background="@color/dark_grey">
+
+        <ImageView
+            android:id="@+id/item_song_art_image_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/audio_file_40px"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/item_library_song_padding"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/item_song_title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Спокойная ночь"
+            android:textStyle="bold"
+            android:textSize="@dimen/font_size_md" />
+
+        <TextView
+            android:id="@+id/item_song_artist_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Кино"
+            android:textSize="@dimen/font_size_sm" />
+    </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/favourite_button"
+        android:layout_width="62dp"
+        android:layout_height="70dp"
+        android:background="@null"
+        android:src="@drawable/favorite_40px"
+        app:tint="@color/white" />
+
+
+</LinearLayout>

@@ -1,37 +1,64 @@
 package com.example.softmusic_beta.ui.adapters.viewholders;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.softmusic_beta.R;
 import com.example.softmusic_beta.glide.audiocover.AudioFileCover;
+import com.example.softmusic_beta.ui.adapters.BaseRecyclerViewAdapter;
 import com.example.softmusic_beta.ui.adapters.models.BaseRecyclerViewItem;
 import com.example.softmusic_beta.ui.adapters.models.SongRecyclerViewItem;
 
 public class SongViewHolder extends BaseViewHolder {
 
-    public SongViewHolder(@NonNull View itemView, BaseViewHolder.ViewType viewType) {
-        super(itemView, viewType);
+    private LinearLayout m_vRootView;
+
+    private ConstraintLayout m_vImageView_Parent;
+
+    private TextView m_vTextView_Title;
+
+    private TextView m_vTextView_Artist;
+    private ImageView m_vImageView_Art;
+
+    public SongViewHolder(@NonNull View itemView) {
+        super(itemView);
+
+        this.m_vRootView = findViewById(R.id.item_root_view);
+        this.m_vImageView_Parent = findViewById(R.id.item_song_art_image_view_parent);
+
+        this.m_vTextView_Title = findViewById(R.id.item_song_title_text_view);
+        this.m_vTextView_Artist =findViewById(R.id.item_song_artist_text_view);
+
+        this.m_vImageView_Art = findViewById(R.id.item_song_art_image_view);
     }
 
     @Override
     public void onBindViewHolder(BaseRecyclerViewItem viewItem) {
         SongRecyclerViewItem item = (SongRecyclerViewItem) viewItem;
 
-        TextView title = findViewById(R.id.item_song_title);
-        ImageView imageView = findViewById(R.id.item_song_art);
-        TextView artist = findViewById(R.id.item_artist);
-        TextView duration = findViewById(R.id.item_song_duration);
-
-        title.setText(viewItem.getTitle());
+        this.m_vTextView_Title.setText(viewItem.getTitle());
         Glide.with(itemView.getContext())
                 .load(new AudioFileCover(item.getFilePath()))
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(imageView);
+                .placeholder(com.example.icons_pack.R.drawable.audio_file_40px)
+                .into(this.m_vImageView_Art);
+    }
+
+    @Override
+    public void onInitializeView(BaseRecyclerViewAdapter.ViewType viewType) {
+        switch (viewType) {
+            case LIST:
+                this.m_vRootView.setOrientation(LinearLayout.HORIZONTAL);
+                this.m_vImageView_Parent.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, itemView.getResources().getDimensionPixelOffset(R.dimen.item_library_song_art_size)));
+                break;
+        }
     }
 }
