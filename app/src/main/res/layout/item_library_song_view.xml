@@ -51,18 +51,23 @@
             android:textSize="@dimen/font_size_sm" />
     </LinearLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/favourite_button"
+            android:layout_width="62dp"
+            android:layout_height="70dp"
+            android:background="@null"
+            android:src="@drawable/favorite_40px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white"
+            android:paddingEnd="15sp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageButton
-        android:id="@+id/favourite_button"
-        android:layout_width="62dp"
-        android:layout_height="70dp"
-        android:background="@null"
-        android:src="@drawable/favorite_40px"
-        app:tint="@color/white" />
+
 
 
 </LinearLayout>

@@ -4,8 +4,15 @@ import android.content.BroadcastReceiver;
 
 import com.example.mediaplayer.interfaces.CustomBroadcastReceiver;
 import com.example.mediaplayer.statics.IntentFields;
+
+import android.content.Context;
 import android.content.IntentFilter;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.util.List;
+import java.util.ListIterator;
 
 public class MediaPlayerBroadcastHelper {
     private final MediaPlayerService m_vService;
@@ -18,7 +25,7 @@ public class MediaPlayerBroadcastHelper {
         List<Integer> queue = intent.getIntegerArrayListExtra(IntentFields.EXTRA_TRACKS_QUEUE);
         int index = intent.getIntExtra(IntentFields.EXTRA_TRACK_INDEX, -1);
 
-        if (index < 0 || queue.isEmpty()) return;
+        if (index < 0 || queue.size() == 0) return;
 
         MediaPlayerBroadcastHelper.this.m_vService.onPlay(queue, index);
     }).build();
@@ -49,7 +56,7 @@ public class MediaPlayerBroadcastHelper {
 
         if (index < 0 || queue.size() == 0) return;
 
-        MediaPlayerBroadcastHelper.this.m_vService.onUpdateQueue(queue, index);
+        MediaPlayerBroadcastHelper.this.m_vService.onUpdateQueue((List<Integer>) queue, index);
     }).build();
 
     private final BroadcastReceiver setSeekbarPosition = ((CustomBroadcastReceiver) (context, intent) -> {
@@ -64,15 +71,16 @@ public class MediaPlayerBroadcastHelper {
         int state = intent.getIntExtra(IntentFields.EXTRA_REPEAT_STATE, -1);
     }).build();
 
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     public void registerReceivers() {
-        this.m_vService.registerReceiver(this.onPlay, new IntentFilter(IntentFields.INTENT_PLAY));
-        this.m_vService.registerReceiver(this.onPlayIndex, new IntentFilter(IntentFields.INTENT_PLAY_INDEX));
-        this.m_vService.registerReceiver(this.onPlayNext, new IntentFilter(IntentFields.INTENT_PLAY_NEXT));
-        this.m_vService.registerReceiver(this.onPlayPrev, new IntentFilter(IntentFields.INTENT_PLAY_PREV));
-        this.m_vService.registerReceiver(this.onPlayPause, new IntentFilter(IntentFields.INTENT_PLAY_PAUSE));
-        this.m_vService.registerReceiver(this.onUpdateQueue, new IntentFilter(IntentFields.INTENT_UPDATE_QUEUE));
-        this.m_vService.registerReceiver(this.setSeekbarPosition, new IntentFilter(IntentFields.INTENT_SET_SEEKBAR));
-        this.m_vService.registerReceiver(this.setRepeatState, new IntentFilter(IntentFields.INTENT_CHANGE_REPEAT));
+        this.m_vService.registerReceiver(this.onPlay, new IntentFilter(IntentFields.INTENT_PLAY), Context.RECEIVER_NOT_EXPORTED);
+        this.m_vService.registerReceiver(this.onPlayIndex, new IntentFilter(IntentFields.INTENT_PLAY_INDEX), Context.RECEIVER_NOT_EXPORTED);
+        this.m_vService.registerReceiver(this.onPlayNext, new IntentFilter(IntentFields.INTENT_PLAY_NEXT), Context.RECEIVER_NOT_EXPORTED);
+        this.m_vService.registerReceiver(this.onPlayPrev, new IntentFilter(IntentFields.INTENT_PLAY_PREV), Context.RECEIVER_NOT_EXPORTED);
+        this.m_vService.registerReceiver(this.onPlayPause, new IntentFilter(IntentFields.INTENT_PLAY_PAUSE), Context.RECEIVER_NOT_EXPORTED);
+        this.m_vService.registerReceiver(this.onUpdateQueue, new IntentFilter(IntentFields.INTENT_UPDATE_QUEUE), Context.RECEIVER_NOT_EXPORTED);
+        this.m_vService.registerReceiver(this.setSeekbarPosition, new IntentFilter(IntentFields.INTENT_SET_SEEKBAR), Context.RECEIVER_NOT_EXPORTED);
+        this.m_vService.registerReceiver(this.setRepeatState, new IntentFilter(IntentFields.INTENT_CHANGE_REPEAT), Context.RECEIVER_NOT_EXPORTED);
     }
 
     public void unregisterReceivers() {
@@ -82,7 +90,7 @@ public class MediaPlayerBroadcastHelper {
         this.m_vService.unregisterReceiver(this.onPlayPrev);
         this.m_vService.unregisterReceiver(this.onPlayPause);
         this.m_vService.unregisterReceiver(this.onUpdateQueue);
-        this.m_vService.unregisterReceiver(this.setSeekbarPosition;
+        this.m_vService.unregisterReceiver(this.setSeekbarPosition);
         this.m_vService.unregisterReceiver(this.setRepeatState);
     }
 }

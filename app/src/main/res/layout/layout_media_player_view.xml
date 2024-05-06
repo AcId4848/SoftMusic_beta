@@ -22,7 +22,7 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <ImageButton
-                android:id="@+id/btn_back"
+                android:id="@+id/btn_down"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@null"
@@ -42,7 +42,7 @@
                 android:textSize="18sp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/btn_back"
+                app:layout_constraintStart_toStartOf="@id/btn_down"
                 app:layout_constraintEnd_toEndOf="@id/btn_more">
 
             </TextView>

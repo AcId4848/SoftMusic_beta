@@ -7,6 +7,25 @@
     android:background="@color/black">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/settings_button_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/settings_40px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#FFF" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -14,7 +33,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="200sp"
             android:text="Здесь пока ничего нет!"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,9 +41,9 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_width="188dp"
-            android:layout_height="172dp"
-            android:layout_marginTop="240dp"
+            android:layout_width="188sp"
+            android:layout_height="172sp"
+            android:layout_marginTop="240sp"
             android:gravity="center"
             android:text="Пока что можете воспользоваться плеером, вкладками Плейлисты и Вся музыка. Также работают эквалайзер, просмотр текста песни и настройки."
             android:textSize="16sp"

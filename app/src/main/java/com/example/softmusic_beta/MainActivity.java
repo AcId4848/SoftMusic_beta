@@ -11,6 +11,7 @@ import android.provider.ContactsContract;
 import android.provider.Settings;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private UIThread m_vThread;
 
+    @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -7,7 +7,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        minSdk 23
+        minSdk 26
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -32,4 +32,6 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+
+    implementation project(path: ':lib:icons_pack')
 }
