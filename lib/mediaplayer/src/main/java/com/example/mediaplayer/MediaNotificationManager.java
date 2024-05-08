@@ -8,10 +8,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ServiceInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Icon;
+import android.media.MediaDescription;
 import android.media.MediaMetadata;
 import android.media.session.MediaSession;
 import android.media.session.PlaybackState;
+import android.os.Build;
 
 import com.example.mediaplayer.services.MediaPlayerService;
 import com.example.mediaplayer.statics.IntentFields;
@@ -98,7 +103,7 @@ public class MediaNotificationManager extends BroadcastReceiver {
 
     private PendingIntent getContentIntent() {
         Intent intent = new Intent("com.example.softmusic_beta.MainActivity");
-        Intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
         return PendingIntent.getActivity((Context) this.m_vService, 100, intent, PendingIntent.FLAG_IMMUTABLE);
     }
@@ -116,7 +121,7 @@ public class MediaNotificationManager extends BroadcastReceiver {
                 this.m_vService.onPlayPrev();
                 break;
             case IntentFields.ACTION_NEXT:
-                this.m_vService.onPlayPrev();
+                this.m_vService.onPlayNext();
                 break;
             case IntentFields.ACTION_FAVOURITE:
                 this.m_vService.onFavourite();
@@ -125,6 +130,72 @@ public class MediaNotificationManager extends BroadcastReceiver {
     }
 
     public void onUpdateNotification(MediaMetadata mediaMetadata, PlaybackState playbackState, MediaSession.Token sessionToken) {
-        
+        if (playbackState == null || playbackState.getState() == PlaybackState.STATE_STOPPED || playbackState.getState() == PlaybackState.STATE_NONE) {
+            this.m_vService.stopForeground(true);
+            try {
+                this.m_vService.unregisterReceiver(this);
+            }
+            catch (Exception ignore) {}
+            this.m_vService.stopSelf();
+            return;
+        }
+
+        boolean isPlaying = playbackState.getState() == PlaybackState.STATE_PLAYING;
+
+        int[] actions = (this.m_vService.getPlaybackManager().canPlayPrev()) ? new int[] { 0, 1 } : new int[1];
+
+        Notification.MediaStyle mediaStyle = new Notification.MediaStyle()
+                .setMediaSession(sessionToken)
+                .setShowActionsInCompactView(actions);
+
+        MediaDescription mediaDescription = mediaMetadata.getDescription();
+
+        Bitmap large_icon = (mediaDescription.getIconBitmap() != null) ?
+                mediaDescription.getIconBitmap() : BitmapFactory.decodeResource(this.m_vService.getResources(), com.example.icons_pack.R.drawable.headphones_40px);
+
+        Notification.Builder builder = new Notification.Builder((Context) this.m_vService, IntentFields.CHANNEL_ID)
+                .setCategory("service")
+                .setStyle((Notification.Style)mediaStyle)
+                .setContentIntent(getContentIntent())
+//                .setSmallIcon(com.example.softmusic_beta.R.drawable.softmusicbeta)
+                .setContentTitle(mediaDescription.getTitle())
+                .setContentText(mediaDescription.getSubtitle())
+                .setLargeIcon(large_icon)
+                .setOngoing(isPlaying);
+
+        Notification.Action action = isPlaying ? this.m_vPauseAction : this.m_vPlayAction;
+
+        if (this.m_vService.getPlaybackManager().canPlayPrev()) {
+            builder.addAction(this.m_vPlayPrevAction);
+        }
+
+        builder.addAction(action);
+
+        if (this.m_vService.getPlaybackManager().canPlayNext()) {
+            builder.addAction(this.m_vPlayNextAction);
+        }
+
+        Notification notification = builder.build();
+        if (isPlaying && !this.m_vStarted) {
+            Intent intent = new Intent((Context) this.m_vService, MediaPlayerService.class);
+            this.m_vService.startForegroundService(intent);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                this.m_vService.startForeground(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
+            }
+            else {
+                this.m_vService.startForeground(NOTIFICATION_ID, notification);
+            }
+
+            this.m_vStarted = true;
+        }
+        else {
+            if (!isPlaying && this.m_vStarted) {
+                this.m_vService.stopForeground(false);
+                this.m_vStarted = false;
+            }
+
+            this.m_vNotificationManager.notify(NOTIFICATION_ID, notification);
+        }
     }
 }

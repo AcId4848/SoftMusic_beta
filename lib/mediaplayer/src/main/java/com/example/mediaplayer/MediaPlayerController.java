@@ -90,7 +90,7 @@ public class MediaPlayerController {
         this.m_vMediaBrowser.connect();
     }
 
-    private void onDestroy() {
+    void onDestroy() {
         if (this.m_vMediaBrowser == null)
             return;
 

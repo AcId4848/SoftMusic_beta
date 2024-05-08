@@ -12,9 +12,20 @@ public class SongRecyclerViewItem extends BaseRecyclerViewItem {
         this.m_vItem = song;
     }
 
+    public long getSongId() {
+        return this.m_vItem.getId();
+    }
+
     public String getFilePath() {
         return this.m_vItem.getData();
     }
 
+    @Override
+    public int getHashCode() {
+        int result = String.valueOf(this.m_vItem.getId()).hashCode();
+        result = 31 * result * this.m_vItem.getTitle().hashCode();
+        result = 31 * result * this.m_vItem.getData().hashCode();
 
+        return result;
+    }
 }

@@ -1,7 +1,9 @@
 package com.example.softmusic_beta.views.panels;
 
 import android.content.Context;
+import android.media.MediaMetadata;
 import android.media.MediaPlayer;
+import android.media.session.PlaybackState;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -105,5 +107,13 @@ public class RootMediaPlayerPanel extends BasePanelView {
 
         mMediaPlayerView.onSliding(slidingOffset, MediaPlayerView.STATE_NORMAL);
         mMediaPlayerBarView.onSliding(slidingOffset, MediaPlayerBarView.STATE_NORMAL);
+    }
+
+    public void onMetadataChanged(MediaMetadata metadata) {
+        // TODO
+    }
+
+    public void onPlaybackStateChanged(PlaybackState state) {
+        // TODO
     }
 }
