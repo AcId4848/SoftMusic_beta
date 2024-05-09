@@ -27,6 +27,8 @@ public class UIThread {
 
     private MediaPlayerThread m_vMediaPlayerThread;
     public UIThread(MainActivity activity) {
+        instance = this;
+
         this.m_vMainActivity = activity;
         onCreate();
 
@@ -49,7 +51,7 @@ public class UIThread {
     }
 
     public void onCreate() {
-        MultiSlidingUpPanelLayout panelLayout = findViewById(R.id.root_sliding_up_panel);
+        m_vMultiSlidingPanel = findViewById(R.id.root_sliding_up_panel);
 
         List<Class<?>> items = new ArrayList<>();
 
@@ -57,9 +59,9 @@ public class UIThread {
         items.add(RootMediaPlayerPanel.class);
         items.add(RootNavigationBarPanel.class);
 
-        panelLayout.setPanelStateListener(new PanelStateListener(panelLayout));
+        m_vMultiSlidingPanel.setPanelStateListener(new PanelStateListener(m_vMultiSlidingPanel));
 
-        panelLayout.setAdapter(new Adapter(this.m_vMainActivity, items));
+        m_vMultiSlidingPanel.setAdapter(new Adapter(this.m_vMainActivity, items));
     }
 
     public static UIThread getInstance() {

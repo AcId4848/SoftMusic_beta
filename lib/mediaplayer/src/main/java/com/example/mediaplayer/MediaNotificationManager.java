@@ -56,10 +56,10 @@ public class MediaNotificationManager extends BroadcastReceiver {
 
 
         this.m_vPlayAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.play_arrow_40px), "Play", playActionIntent).build();
-        this.m_vPauseAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.audio_file_40px), "Pause", playActionIntent).build();
-        this.m_vPlayNextAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.skip_next_40px), "Play Previous", playActionIntent).build();
-        this.m_vPlayPrevAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.skip_previous_40px), "Play Next", playActionIntent).build();
-        this.m_vFavouriteSongAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.favorite_40px), "Favourite", playActionIntent).build();
+        this.m_vPauseAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.favorite_40px), "Pause", pauseActionIntent).build();
+        this.m_vPlayNextAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.skip_next_40px), "Play Previous", playNextActionIntent).build();
+        this.m_vPlayPrevAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.skip_previous_40px), "Play Next", playPrevActionIntent).build();
+        this.m_vFavouriteSongAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.favorite_40px), "Favourite", MakeSongFavourite).build();
 
         IntentFilter intentFilter = new IntentFilter();
 
@@ -69,7 +69,7 @@ public class MediaNotificationManager extends BroadcastReceiver {
         intentFilter.addAction(IntentFields.ACTION_NEXT);
         intentFilter.addAction(IntentFields.ACTION_FAVOURITE);
 
-        this.m_vService.registerReceiver(this, intentFilter, Context.RECEIVER_NOT_EXPORTED);
+        this.m_vService.registerReceiver(this, intentFilter, Context.RECEIVER_EXPORTED);
         this.isRegistered = true;
 
         this.m_vNotificationManager = this.m_vService.getSystemService(NotificationManager.class);
@@ -157,10 +157,10 @@ public class MediaNotificationManager extends BroadcastReceiver {
                 .setCategory("service")
                 .setStyle((Notification.Style)mediaStyle)
                 .setContentIntent(getContentIntent())
-//                .setSmallIcon(com.example.softmusic_beta.R.drawable.softmusicbeta)
+                .setSmallIcon(com.example.icons_pack.R.drawable.expand_more_40px)
                 .setContentTitle(mediaDescription.getTitle())
                 .setContentText(mediaDescription.getSubtitle())
-                .setLargeIcon(large_icon)
+                .setLargeIcon(mediaDescription.getIconBitmap())
                 .setOngoing(isPlaying);
 
         Notification.Action action = isPlaying ? this.m_vPauseAction : this.m_vPlayAction;

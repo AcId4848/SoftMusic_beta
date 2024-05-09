@@ -123,7 +123,11 @@ public class MediaPlayerService extends MediaBrowserService implements PlaybackC
     }
 
     public void onFavourite() { this.m_vPlaybackManager.onFavourite();}
-    public void onPlay(List<Integer> queue, int index) { }
+    public void onPlay(List<Integer> queue, int index) {
+        this.m_vPlaybackManager.onSetQueue(queue);
+        this.m_vPlaybackManager.onPlayIndex(index);
+        this.m_vCurrentIndex = index;
+    }
 
     public void onPause() {
         this.m_vPlaybackManager.onPause();
@@ -139,6 +143,7 @@ public class MediaPlayerService extends MediaBrowserService implements PlaybackC
 
     public void onUpdateQueue(List<Integer> queue, int index) {
         this.m_vPlaybackManager.onSetQueue(queue);
+//        this.m_vPlaybackManager.onPlayIndex(index);
         this.m_vCurrentIndex= index;
 
     }

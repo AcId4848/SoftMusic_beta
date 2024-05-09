@@ -10,6 +10,7 @@ import android.media.session.PlaybackState;
 import android.os.Build;
 import android.os.PowerManager;
 import android.os.SystemClock;
+import android.util.Log;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.RequiresApi;
@@ -249,8 +250,10 @@ public class PlaybackManager {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     public void onPlayIndex(int queueIndex) {
+        Log.i(TAG, "Current Index > " + this.m_vCurrentQueueIndex);
+
         int id = this.m_vQueue.get(queueIndex);
 
         Song songToPlay = this.m_vSongs.get(id);
@@ -288,6 +291,7 @@ public class PlaybackManager {
         else {
             this.onStartMediaPlayer();
         }
+        Log.i(TAG, "Current Index AP > " + this.m_vCurrentQueueIndex);
     }
     public void onPause() {
         if (this.m_vMediaPlayer == null)
@@ -315,13 +319,13 @@ public class PlaybackManager {
     public void onPlayNext() {
         if (this.canPlayNext())
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                this.onPlayIndex(this.m_vCurrentQueueIndex++);
+                this.onPlayIndex(this.m_vCurrentQueueIndex + 1);
             }
     }
     public void onPlayPrevious() {
         if (this.canPlayPrev())
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                this.onPlayIndex(this.m_vCurrentQueueIndex--);
+                this.onPlayIndex(this.m_vCurrentQueueIndex - 1);
             }
     }
 

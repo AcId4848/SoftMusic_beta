@@ -1,6 +1,8 @@
 package com.example.softmusic_beta.ui.adapters.models;
 
 public abstract class BaseRecyclerViewItem {
+    public abstract int getHashCode();
+
     public enum ItemType {
         SONG
     }
