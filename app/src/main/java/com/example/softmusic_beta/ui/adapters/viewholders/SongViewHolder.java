@@ -45,6 +45,7 @@ public class SongViewHolder extends BaseViewHolder {
         SongRecyclerViewItem item = (SongRecyclerViewItem) viewItem;
 
         this.m_vTextView_Title.setText(viewItem.getTitle());
+        this.m_vTextView_Artist.setText(viewItem.getArtistName());
         Glide.with(itemView.getContext())
                 .load(new AudioFileCover(item.getFilePath()))
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -55,6 +56,10 @@ public class SongViewHolder extends BaseViewHolder {
     @Override
     public void onInitializeView(BaseRecyclerViewAdapter.ViewType viewType) {
         switch (viewType) {
+            case GRID:
+                this.m_vRootView.setOrientation(LinearLayout.VERTICAL);
+                this.m_vImageView_Parent.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                break;
             case LIST:
                 this.m_vRootView.setOrientation(LinearLayout.HORIZONTAL);
                 this.m_vImageView_Parent.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, itemView.getResources().getDimensionPixelOffset(R.dimen.item_library_song_art_size)));

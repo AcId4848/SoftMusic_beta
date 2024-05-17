@@ -1,37 +1,26 @@
 package com.example.softmusic_beta;
 
-import static android.provider.Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.ContactsContract;
 import android.provider.Settings;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.example.extensions.bottomsheet.CustomBottomSheetBehavior;
 import com.example.softmusic_beta.ui.UIThread;
 import com.example.softmusic_beta.utils.PermissionManager;
-import com.example.softmusic_beta.views.panels.RootMediaPlayerPanel;
-import com.example.softmusic_beta.views.panels.RootNavigationBarPanel;
-import com.realgear.multislidinguppanel.Adapter;
-import com.realgear.multislidinguppanel.MultiSlidingUpPanelLayout;
-import com.realgear.multislidinguppanel.PanelStateListener;
-import android.Manifest;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.Manifest;
+import android.view.View;
+import android.widget.SearchView;
 
 public class MainActivity extends AppCompatActivity {
 
     private UIThread m_vThread;
-
+    private SearchView m_vSearchView;
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +55,22 @@ public class MainActivity extends AppCompatActivity {
                     new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
                     100);
         }
+        Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
+        intent.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
+        intent.putExtra(Settings.EXTRA_CHANNEL_ID, getPackageName());
+        startActivity(intent);
 
         this.m_vThread = new UIThread(this);
 
+    }
+
+    public void startSettings_Library(View view) {
+        Intent intent = new Intent(this, SettingsActivity_Library.class);
+        startActivity(intent);
+    }
+
+    public void startSettings_AllMusic(View view) {
+        Intent intent = new Intent(this, SettingsActivity_AllMusic.class);
+        startActivity(intent);
     }
 }

@@ -73,6 +73,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
+            <ImageView
+                android:id="@+id/media_player_album_art"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/audio_file_40px"/>
+
         </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -283,7 +289,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.example.extensions.bottomsheet.CustomBottomSheetBehavior"
-        app:behavior_peekHeight="32dp"
+        app:behavior_peekHeight="36dp"
         app:behavior_defaultState="collapsed">
 
         <com.google.android.material.card.MaterialCardView

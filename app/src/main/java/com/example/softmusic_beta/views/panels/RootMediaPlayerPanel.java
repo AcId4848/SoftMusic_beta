@@ -1,6 +1,8 @@
 package com.example.softmusic_beta.views.panels;
 
 import android.content.Context;
+import android.drm.DrmStore;
+import android.graphics.Bitmap;
 import android.media.MediaMetadata;
 import android.media.MediaPlayer;
 import android.media.session.PlaybackState;
@@ -15,6 +17,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.extensions.bottomsheet.CustomBottomSheetBehavior;
 import com.example.softmusic_beta.R;
+import com.example.softmusic_beta.theme.AsyncPaletteBuilder;
+import com.example.softmusic_beta.theme.interfaces.PaletteStateListener;
 import com.example.softmusic_beta.ui.adapters.StateFragmentAdapter;
 import com.example.softmusic_beta.ui.fragments.FragmentAllMusic;
 import com.example.softmusic_beta.ui.fragments.FragmentHome;
@@ -27,7 +31,7 @@ import com.realgear.multislidinguppanel.IPanel;
 import com.realgear.multislidinguppanel.MultiSlidingUpPanelLayout;
 import com.realgear.readable_bottom_bar.ReadableBottomBar;
 
-public class RootMediaPlayerPanel extends BasePanelView {
+public class RootMediaPlayerPanel extends BasePanelView implements PaletteStateListener {
 
     private ViewPager2 rootViewPager;
     private ReadableBottomBar rootNavigationBar;
@@ -36,16 +40,20 @@ public class RootMediaPlayerPanel extends BasePanelView {
 
     private MediaPlayerBarView mMediaPlayerBarView;
 
+    private AsyncPaletteBuilder mAsyncPaletteBuilder;
+
     public RootMediaPlayerPanel(@NonNull Context context, MultiSlidingUpPanelLayout panelLayout) {
         super(context, panelLayout);
 
         getContext().setTheme(R.style.Theme_SoftMusic_beta);
         LayoutInflater.from(getContext()).inflate(R.layout.layout_root_mediaplayer, this, true);
+
+        this.mAsyncPaletteBuilder = new AsyncPaletteBuilder(this.getContext(), this);
     }
 
     @Override
     public void onCreateView() {
-        this.setPanelState(MultiSlidingUpPanelLayout.COLLAPSED);
+        this.setPanelState(MultiSlidingUpPanelLayout.HIDDEN );
         this.setSlideDirection(MultiSlidingUpPanelLayout.SLIDE_VERTICAL);
 
         this.setPeakHeight(getResources().getDimensionPixelSize(R.dimen.mediaplayerbar_height));
@@ -97,8 +105,11 @@ public class RootMediaPlayerPanel extends BasePanelView {
     }
 
     @Override
-    public void onPanelStateChanged(int i) {
-
+    public void onPanelStateChanged(int panelState) {
+        if (this.mMediaPlayerBarView != null)
+            this.mMediaPlayerBarView.onPanelStateChanged(panelState);
+        if (this.mMediaPlayerView != null)
+            this.mMediaPlayerView.onPanelStateChanged(panelState);
     }
 
     @Override
@@ -110,10 +121,33 @@ public class RootMediaPlayerPanel extends BasePanelView {
     }
 
     public void onMetadataChanged(MediaMetadata metadata) {
-        // TODO
+        this.mMediaPlayerBarView.onMetadataChanged(metadata);
+
+        Bitmap bitmap = metadata.getBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART);
+        this.mAsyncPaletteBuilder.onStartAnimation(bitmap);
     }
 
     public void onPlaybackStateChanged(PlaybackState state) {
-        // TODO
+        if (state.getState() == PlaybackState.STATE_PLAYING || state.getState() == PlaybackState.STATE_PAUSED) {
+            if (this.getPanelState() == MultiSlidingUpPanelLayout.HIDDEN)
+                this.collapsePanel();
+        }
+
+        this.mMediaPlayerBarView.onPlaybackStateChanged(state);
+    }
+
+    @Override
+    public void onUpdateVibrantColor(int vibrantColor) {
+        this.mMediaPlayerBarView.onUpdateVibrantColor(vibrantColor);
+    }
+
+    @Override
+    public void onUpdateVibrantDarkColor(int vibrantDarkColor) {
+        this.mMediaPlayerBarView.onUpdateVibrantDarkColor(vibrantDarkColor);
+    }
+
+    @Override
+    public void onUpdateVibrantLightColor(int vibrantLightColor) {
+        this.mMediaPlayerBarView.onUpdateVibrantLightColor(vibrantLightColor);
     }
 }

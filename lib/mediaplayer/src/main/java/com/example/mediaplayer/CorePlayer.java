@@ -46,14 +46,19 @@ public class CorePlayer {
             }
 
             @Override
+            public void onClickPlayPause() {
+                Intent intent = new Intent(IntentFields.INTENT_PLAY_PAUSE);
+                CorePlayer.this.m_vActivity.sendBroadcast(intent);
+            }
+
+            @Override
             public void onClickPlayPrev() {
 
             }
 
             @Override
             public void onClickPause() {
-                Intent intent = new Intent(IntentFields.INTENT_PLAY_PAUSE);
-                CorePlayer.this.m_vActivity.sendBroadcast(intent);
+
             }
 
             @Override

@@ -1,5 +1,7 @@
 package com.example.softmusic_beta.ui.adapters;
 
+import android.annotation.SuppressLint;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,10 +13,11 @@ import java.util.List;
 public abstract class BaseRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public enum ViewType {
-        LIST
+        GRID, LIST
     }
 
-    final List<BaseRecyclerViewItem> m_vItems;
+
+    List<BaseRecyclerViewItem> m_vItems;
 
     private ViewType m_vLayoutViewType;
 
@@ -28,6 +31,11 @@ public abstract class BaseRecyclerViewAdapter extends RecyclerView.Adapter<BaseV
 
     public void setAdapterViewType(ViewType viewType) {
         this.m_vLayoutViewType = viewType;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return this.m_vItems.get(position).getHashCode();
     }
 
     @Override

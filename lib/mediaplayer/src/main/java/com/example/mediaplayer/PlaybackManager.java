@@ -150,7 +150,7 @@ public class PlaybackManager {
             @SuppressLint("WrongConstant")
             PlaybackState.Builder builder = new PlaybackState.Builder()
                     .setActions(this.getAvailableActions())
-                    .setState(this.getPlaybackState(), this.getPlaybackState(), 1.0F, SystemClock.elapsedRealtime());
+                    .setState(this.getPlaybackState(), this.getPlaybackPosition(), 1.0F, SystemClock.elapsedRealtime());
 
             this.m_vCallback.onPlaybackStateChanged(builder.build());
         }
@@ -180,7 +180,7 @@ public class PlaybackManager {
     }
 
     public int getPlaybackPosition() {
-        if (this.isPlaying()) {
+        if (this.isPlayingOrPaused()) {
             return this.m_vMediaPlayer.getCurrentPosition();
         }
 
@@ -276,7 +276,6 @@ public class PlaybackManager {
             this.m_vCallback.onUpdateMetadata(songToPlay);
             this.m_vCurrentSong = songToPlay;
             this.m_vCurrentQueueIndex = queueIndex;
-
             if (songToPlay != null) {
                 try {
                     this.m_vMediaPlayer.setDataSource(songToPlay.getData());
@@ -311,22 +310,16 @@ public class PlaybackManager {
         if (this.m_vMediaPlayer.isPlaying()) {
             this.onPause();
         } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 onPlayIndex(this.m_vCurrentQueueIndex);
-            }
         }
     }
     public void onPlayNext() {
         if (this.canPlayNext())
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 this.onPlayIndex(this.m_vCurrentQueueIndex + 1);
-            }
     }
     public void onPlayPrevious() {
         if (this.canPlayPrev())
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 this.onPlayIndex(this.m_vCurrentQueueIndex - 1);
-            }
     }
 
     public void onSeekTo(int position) {

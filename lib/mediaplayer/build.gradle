@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.androidLibrary)
+    id 'com.android.library'
 }
 
 android {
@@ -34,5 +34,4 @@ dependencies {
     androidTestImplementation libs.espresso.core
 
     implementation project(path: ':lib:icons_pack')
-    implementation project(path: ':app')
 }

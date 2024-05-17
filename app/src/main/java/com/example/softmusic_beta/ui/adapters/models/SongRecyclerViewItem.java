@@ -7,7 +7,7 @@ public class SongRecyclerViewItem extends BaseRecyclerViewItem {
     private Song m_vItem;
 
     public SongRecyclerViewItem(Song song) {
-        super(song.getTitle(), ItemType.SONG);
+        super(song.getTitle(), song.getArtistName(), song.getDuration(),  ItemType.SONG);
 
         this.m_vItem = song;
     }
@@ -24,6 +24,7 @@ public class SongRecyclerViewItem extends BaseRecyclerViewItem {
     public int getHashCode() {
         int result = String.valueOf(this.m_vItem.getId()).hashCode();
         result = 31 * result * this.m_vItem.getTitle().hashCode();
+        result = 31 * result * this.m_vItem.getArtistName().hashCode();
         result = 31 * result * this.m_vItem.getData().hashCode();
 
         return result;

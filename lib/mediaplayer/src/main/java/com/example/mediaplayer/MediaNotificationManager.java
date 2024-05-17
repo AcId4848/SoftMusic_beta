@@ -34,8 +34,6 @@ public class MediaNotificationManager extends BroadcastReceiver {
     private final Notification.Action m_vPauseAction;
     private final Notification.Action m_vPlayNextAction;
     private final Notification.Action m_vPlayPrevAction;
-    private final Notification.Action m_vFavouriteSongAction;
-
     private final MediaPlayerService m_vService;
 
     private boolean m_vStarted;
@@ -52,22 +50,19 @@ public class MediaNotificationManager extends BroadcastReceiver {
         PendingIntent pauseActionIntent = PendingIntent.getBroadcast((Context) this.m_vService, 100, new Intent(IntentFields.ACTION_PAUSE).setPackage(pkgName), PendingIntent.FLAG_IMMUTABLE);
         PendingIntent playPrevActionIntent = PendingIntent.getBroadcast((Context) this.m_vService, 100, new Intent(IntentFields.ACTION_PREV).setPackage(pkgName), PendingIntent.FLAG_IMMUTABLE);
         PendingIntent playNextActionIntent = PendingIntent.getBroadcast((Context) this.m_vService, 100, new Intent(IntentFields.ACTION_NEXT).setPackage(pkgName), PendingIntent.FLAG_IMMUTABLE);
-        PendingIntent MakeSongFavourite = PendingIntent.getBroadcast((Context) this.m_vService, 100, new Intent(IntentFields.ACTION_FAVOURITE).setPackage(pkgName), PendingIntent.FLAG_IMMUTABLE);
+
 
 
         this.m_vPlayAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.play_arrow_40px), "Play", playActionIntent).build();
-        this.m_vPauseAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.favorite_40px), "Pause", pauseActionIntent).build();
-        this.m_vPlayNextAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.skip_next_40px), "Play Previous", playNextActionIntent).build();
-        this.m_vPlayPrevAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.skip_previous_40px), "Play Next", playPrevActionIntent).build();
-        this.m_vFavouriteSongAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.favorite_40px), "Favourite", MakeSongFavourite).build();
-
+        this.m_vPauseAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.pause_40px), "Pause", pauseActionIntent).build();
+        this.m_vPlayNextAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.skip_next_40px), "Play Next", playNextActionIntent).build();
+        this.m_vPlayPrevAction = new Notification.Action.Builder(Icon.createWithResource((Context) this.m_vService, com.example.icons_pack.R.drawable.skip_previous_40px), "Play Previous", playPrevActionIntent).build();
         IntentFilter intentFilter = new IntentFilter();
 
         intentFilter.addAction(IntentFields.ACTION_PLAY);
         intentFilter.addAction(IntentFields.ACTION_PAUSE);
         intentFilter.addAction(IntentFields.ACTION_PREV);
         intentFilter.addAction(IntentFields.ACTION_NEXT);
-        intentFilter.addAction(IntentFields.ACTION_FAVOURITE);
 
         this.m_vService.registerReceiver(this, intentFilter, Context.RECEIVER_EXPORTED);
         this.isRegistered = true;
@@ -77,7 +72,6 @@ public class MediaNotificationManager extends BroadcastReceiver {
 
         NotificationChannel channel = new NotificationChannel(pkgName, NOTIFICATION_NAME, NotificationManager.IMPORTANCE_NONE);
         channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-
         this.m_vNotificationManager.createNotificationChannel(channel);
 
     }
@@ -123,9 +117,6 @@ public class MediaNotificationManager extends BroadcastReceiver {
             case IntentFields.ACTION_NEXT:
                 this.m_vService.onPlayNext();
                 break;
-            case IntentFields.ACTION_FAVOURITE:
-                this.m_vService.onFavourite();
-                break;
         }
     }
 
@@ -150,14 +141,11 @@ public class MediaNotificationManager extends BroadcastReceiver {
 
         MediaDescription mediaDescription = mediaMetadata.getDescription();
 
-        Bitmap large_icon = (mediaDescription.getIconBitmap() != null) ?
-                mediaDescription.getIconBitmap() : BitmapFactory.decodeResource(this.m_vService.getResources(), com.example.icons_pack.R.drawable.headphones_40px);
-
         Notification.Builder builder = new Notification.Builder((Context) this.m_vService, IntentFields.CHANNEL_ID)
                 .setCategory("service")
                 .setStyle((Notification.Style)mediaStyle)
                 .setContentIntent(getContentIntent())
-                .setSmallIcon(com.example.icons_pack.R.drawable.expand_more_40px)
+                .setSmallIcon(com.example.icons_pack.R.drawable.softmusicbeta)
                 .setContentTitle(mediaDescription.getTitle())
                 .setContentText(mediaDescription.getSubtitle())
                 .setLargeIcon(mediaDescription.getIconBitmap())

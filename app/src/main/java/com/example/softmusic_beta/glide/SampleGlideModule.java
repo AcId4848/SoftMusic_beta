@@ -13,6 +13,7 @@ import com.example.softmusic_beta.glide.audiocover.AudioFileCoverLoader;
 
 import java.io.InputStream;
 
+@GlideModule
 public class SampleGlideModule extends AppGlideModule {
     @Override
     public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {

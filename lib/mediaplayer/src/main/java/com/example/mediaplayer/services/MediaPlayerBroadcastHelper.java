@@ -73,14 +73,14 @@ public class MediaPlayerBroadcastHelper {
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     public void registerReceivers() {
-        this.m_vService.registerReceiver(this.onPlay, new IntentFilter(IntentFields.INTENT_PLAY), Context.RECEIVER_NOT_EXPORTED);
-        this.m_vService.registerReceiver(this.onPlayIndex, new IntentFilter(IntentFields.INTENT_PLAY_INDEX), Context.RECEIVER_NOT_EXPORTED);
-        this.m_vService.registerReceiver(this.onPlayNext, new IntentFilter(IntentFields.INTENT_PLAY_NEXT), Context.RECEIVER_NOT_EXPORTED);
-        this.m_vService.registerReceiver(this.onPlayPrev, new IntentFilter(IntentFields.INTENT_PLAY_PREV), Context.RECEIVER_NOT_EXPORTED);
-        this.m_vService.registerReceiver(this.onPlayPause, new IntentFilter(IntentFields.INTENT_PLAY_PAUSE), Context.RECEIVER_NOT_EXPORTED);
-        this.m_vService.registerReceiver(this.onUpdateQueue, new IntentFilter(IntentFields.INTENT_UPDATE_QUEUE), Context.RECEIVER_NOT_EXPORTED);
-        this.m_vService.registerReceiver(this.setSeekbarPosition, new IntentFilter(IntentFields.INTENT_SET_SEEKBAR), Context.RECEIVER_NOT_EXPORTED);
-        this.m_vService.registerReceiver(this.setRepeatState, new IntentFilter(IntentFields.INTENT_CHANGE_REPEAT), Context.RECEIVER_NOT_EXPORTED);
+        this.m_vService.registerReceiver(this.onPlay, new IntentFilter(IntentFields.INTENT_PLAY), Context.RECEIVER_EXPORTED);
+        this.m_vService.registerReceiver(this.onPlayIndex, new IntentFilter(IntentFields.INTENT_PLAY_INDEX), Context.RECEIVER_EXPORTED);
+        this.m_vService.registerReceiver(this.onPlayNext, new IntentFilter(IntentFields.INTENT_PLAY_NEXT), Context.RECEIVER_EXPORTED);
+        this.m_vService.registerReceiver(this.onPlayPrev, new IntentFilter(IntentFields.INTENT_PLAY_PREV), Context.RECEIVER_EXPORTED);
+        this.m_vService.registerReceiver(this.onPlayPause, new IntentFilter(IntentFields.INTENT_PLAY_PAUSE), Context.RECEIVER_EXPORTED);
+        this.m_vService.registerReceiver(this.onUpdateQueue, new IntentFilter(IntentFields.INTENT_UPDATE_QUEUE), Context.RECEIVER_EXPORTED);
+        this.m_vService.registerReceiver(this.setSeekbarPosition, new IntentFilter(IntentFields.INTENT_SET_SEEKBAR), Context.RECEIVER_EXPORTED);
+        this.m_vService.registerReceiver(this.setRepeatState, new IntentFilter(IntentFields.INTENT_CHANGE_REPEAT), Context.RECEIVER_EXPORTED);
     }
 
     public void unregisterReceivers() {

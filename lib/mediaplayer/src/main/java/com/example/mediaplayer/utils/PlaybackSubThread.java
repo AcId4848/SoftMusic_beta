@@ -31,6 +31,7 @@ public class PlaybackSubThread implements Runnable {
         while (isRunning()) {
             if (isStopped()) {
                 break;
+
             }
 
             int state = this.m_vPlaybackManager.getPlaybackState();

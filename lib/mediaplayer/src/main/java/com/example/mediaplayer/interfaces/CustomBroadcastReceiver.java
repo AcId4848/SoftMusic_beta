@@ -12,7 +12,7 @@ public interface CustomBroadcastReceiver {
         return new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-
+                CustomBroadcastReceiver.this.onReceive(context, intent);
             }
         };
     }

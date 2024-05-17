@@ -10,14 +10,22 @@ public abstract class BaseRecyclerViewItem {
     private final String m_vTitle;
     private final ItemType m_vItemType;
 
-    public BaseRecyclerViewItem(String title, ItemType itemType) {
+    private final String m_vArtistName;
+
+    private final long m_vDuration;
+
+    public BaseRecyclerViewItem(String title, String artist, long duration, ItemType itemType) {
         this.m_vTitle = title;
+        this.m_vArtistName = artist;
+        this.m_vDuration = duration;
         this.m_vItemType = itemType;
     }
 
     public String getTitle() {
         return this.m_vTitle;
     }
+
+    public String getArtistName() { return this.m_vArtistName; }
 
     public ItemType getItemType() {
         return this.m_vItemType;

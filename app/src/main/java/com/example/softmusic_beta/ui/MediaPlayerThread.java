@@ -31,6 +31,10 @@ public class MediaPlayerThread {
         }
     }
 
+    public static MediaPlayerThread getInstance() {
+        return instance;
+    }
+
     public PlayerCallback getCallback() {
         return this.m_vCallback;
     }

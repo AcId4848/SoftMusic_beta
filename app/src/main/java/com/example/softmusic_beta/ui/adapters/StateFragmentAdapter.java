@@ -70,14 +70,6 @@ public class StateFragmentAdapter extends FragmentStateAdapter {
         }
     }
 
-    public Fragment getFragment(int position) {
-        return (Fragment) this.m_vItems.values().toArray()[position];
-    }
-
-    public <T extends Fragment> T getFragment(Class<T> fragmentType) {
-        return (T) this.m_vItems.get(fragmentType);
-    }
-
     @NonNull
     @Override
     public Fragment createFragment(int position) {

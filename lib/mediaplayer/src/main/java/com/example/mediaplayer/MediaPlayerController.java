@@ -7,7 +7,6 @@ import android.media.MediaMetadata;
 import android.media.browse.MediaBrowser;
 import android.media.session.MediaController;
 import android.media.session.PlaybackState;
-import android.provider.MediaStore;
 import android.util.Log;
 
 import androidx.annotation.NonNull;

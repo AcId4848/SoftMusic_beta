@@ -88,18 +88,19 @@ public class MediaPlayerService extends MediaBrowserService implements PlaybackC
     public void onPlaybackStateChanged(PlaybackState playbackState) {
         this.m_vPrevSong = (this.m_vPrevSong == null) ? this.m_vPlaybackManager.getCurrentSong() : this.m_vPrevSong;
 
-        if (this.m_vPrevState == null) {
+        /*if (this.m_vPrevState == null) {
             this.m_vPrevState = playbackState;
         } else if (this.m_vPrevState.getState() == playbackState.getState() && this.m_vPrevSong.getId() == this.m_vPlaybackManager.getCurrentSong().getId()) {
             this.m_vMediaSession.setPlaybackState(playbackState);
             return;
-        }
+        }*/
 
         this.m_vMediaSession.setPlaybackState(playbackState);
         this.m_vNotificationManager.onUpdateNotification(
                 LibraryManager.getMediaMetadata(this.m_vPlaybackManager.getCurrentSong()),
                 playbackState,
                 this.m_vMediaSession.getSessionToken());
+
         this.m_vPrevSong = this.m_vPlaybackManager.getCurrentSong();
         this.m_vPrevState = playbackState;
         this.m_vCurrentIndex = this.m_vPlaybackManager.getCurrentQueueIndex();
@@ -107,7 +108,8 @@ public class MediaPlayerService extends MediaBrowserService implements PlaybackC
 
     @Override
     public void onUpdateMetadata(Song song) {
-        this.m_vMediaSession.setMetadata(LibraryManager.getMediaMetadata(this.m_vPlaybackManager.getCurrentSong()));
+
+        this.m_vMediaSession.setMetadata(LibraryManager.getMediaMetadata(song));
     }
 
     public void onPlayPause() {

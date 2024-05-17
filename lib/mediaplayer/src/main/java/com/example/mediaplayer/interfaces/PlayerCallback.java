@@ -5,6 +5,7 @@ public interface PlayerCallback {
     void onClickPlay(int queueIndex, List<Integer> queue);
 
     void onClickPlayIndex(int index);
+    void onClickPlayPause();
     void onClickPlayNext();
     void onClickPlayPrev();
     void onClickPause();

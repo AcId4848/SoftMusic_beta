@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.SoftMusic_beta" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@drawable/softmusicbeta</item>
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/black</item>

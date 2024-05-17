@@ -13,7 +13,7 @@
         android:id="@+id/item_song_art_image_view_parent"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/item_library_song_art_size"
-        android:background="@color/dark_grey">
+        android:background="@drawable/audio_file_shape">
 
         <ImageView
             android:id="@+id/item_song_art_image_view"
@@ -24,6 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintDimensionRatio="1:1"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -49,21 +50,28 @@
             android:layout_height="wrap_content"
             android:text="Кино"
             android:textSize="@dimen/font_size_sm" />
+
+        <TextView
+            android:id="@+id/item_song_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4:44"
+            android:textSize="12sp"/>
     </LinearLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/favourite_button"
-            android:layout_width="62dp"
-            android:layout_height="70dp"
-            android:background="@null"
-            android:src="@drawable/favorite_40px"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white"
-            android:paddingEnd="15sp"/>
+<!--        <ImageButton-->
+<!--            android:id="@+id/favourite_button"-->
+<!--            android:layout_width="62dp"-->
+<!--            android:layout_height="70dp"-->
+<!--            android:background="@null"-->
+<!--            android:src="@drawable/favorite_40px"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:tint="@color/white"-->
+<!--            android:paddingEnd="15sp"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
