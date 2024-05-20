@@ -37,19 +37,19 @@
         </activity>
 
         <activity
-            android:name=".SettingsActivity_Library"
+            android:name=".SettingsActivityLibrary"
             android:windowSoftInputMode="adjustResize"
             android:exported="true">
 
         </activity>
 
-        <activity android:name=".SettingsActivity_AllMusic"
+        <activity android:name=".SettingsActivityAllMusic"
             android:windowSoftInputMode="adjustResize"
             android:exported="true">
 
         </activity>
 
-        <activity android:name=".SettingsActivity_Home"
+        <activity android:name=".SettingsActivityHome"
             android:windowSoftInputMode="adjustResize"
             android:exported="true">
 

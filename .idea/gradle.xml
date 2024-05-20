@@ -14,7 +14,6 @@
             <option value="$PROJECT_DIR$/lib/extensions" />
             <option value="$PROJECT_DIR$/lib/icons_pack" />
             <option value="$PROJECT_DIR$/lib/mediaplayer" />
-            <option value="$PROJECT_DIR$/lib/utils" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

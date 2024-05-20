@@ -64,13 +64,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void startSettings_Library(View view) {
-        Intent intent = new Intent(this, SettingsActivity_Library.class);
+    public void startSettingsLibrary(View view) {
+        Intent intent = new Intent(this, SettingsActivityLibrary.class);
         startActivity(intent);
     }
 
-    public void startSettings_AllMusic(View view) {
-        Intent intent = new Intent(this, SettingsActivity_AllMusic.class);
+    public void startSettingsAllMusic(View view) {
+        Intent intent = new Intent(this, SettingsActivityAllMusic.class);
         startActivity(intent);
     }
 }
