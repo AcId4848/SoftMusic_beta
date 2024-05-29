@@ -21,6 +21,8 @@ public abstract class BaseRecyclerViewItem {
         this.m_vItemType = itemType;
     }
 
+    public long getDuration() { return this.m_vDuration; }
+
     public String getTitle() {
         return this.m_vTitle;
     }

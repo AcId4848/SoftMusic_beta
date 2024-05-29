@@ -7,16 +7,14 @@ import com.example.mediaplayer.interfaces.PlayerCallback;
 import com.example.mediaplayer.statics.ClassManager;
 import com.example.softmusic_beta.MainActivity;
 
-public class MediaPlayerThread {
-    public static final String TAG = "MediaPlayerThread";
-
-    private static MediaPlayerThread instance;
+public class MediaPlayerManager {
+    private static MediaPlayerManager instance;
 
     private CorePlayer m_vCorePlayer;
 
     private PlayerCallback m_vCallback;
 
-    public MediaPlayerThread(MainActivity activity, MediaController.Callback callback) {
+    public MediaPlayerManager(MainActivity activity, MediaController.Callback callback) {
         ClassManager.init(MainActivity.class);
 
         this.m_vCorePlayer = new CorePlayer(activity, callback);
@@ -25,13 +23,13 @@ public class MediaPlayerThread {
         setInstance(this);
     }
 
-    private void setInstance(MediaPlayerThread instance) {
-        if (MediaPlayerThread.instance == null) {
-            MediaPlayerThread.instance = instance;
+    private void setInstance(MediaPlayerManager instance) {
+        if (MediaPlayerManager.instance == null) {
+            MediaPlayerManager.instance = instance;
         }
     }
 
-    public static MediaPlayerThread getInstance() {
+    public static MediaPlayerManager getInstance() {
         return instance;
     }
 

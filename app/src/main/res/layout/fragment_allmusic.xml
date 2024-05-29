@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <ImageButton
             android:id="@+id/btn_grid_or_list_allmusic"
@@ -23,6 +24,17 @@
             app:layout_constraintTop_toTopOf="parent">
 
         </ImageButton>
+
+        <TextView
+            android:layout_width="112dp"
+            android:layout_height="29dp"
+            android:text="Вся музыка"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_settings_allmusic"
+            app:layout_constraintStart_toEndOf="@id/btn_grid_or_list_allmusic"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
 
 
         <ImageButton
@@ -62,7 +74,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_song"
-        app:layout_constraintVertical_bias="0.5"
-        tools:listitem="@layout/item_library_song_view" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.2"
+        tools:listitem="@layout/item_allmusic_song_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

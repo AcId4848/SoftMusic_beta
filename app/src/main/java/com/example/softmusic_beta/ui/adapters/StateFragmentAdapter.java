@@ -33,40 +33,40 @@ public class StateFragmentAdapter extends FragmentStateAdapter {
         this.m_vFragmentManager = fragmentManager;
     }
 
-    public void addFragment(Object fragment) {
-        try {
-            if (!(fragment instanceof Fragment))
-                throw new Exception("Not instance of Fragment!!!");
+//    public void addFragment(Object fragment) {
+//        try {
+//            if (!(fragment instanceof Fragment))
+//                throw new Exception("Not instance of Fragment!!!");
+//
+//            Class<?> clasz =  Class.forName(fragment.getClass().getName());
+//            this.m_vItems.put(clasz, (Fragment) fragment);
+//        }
+//        catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
-            Class<?> clasz =  Class.forName(fragment.getClass().getName());
-            this.m_vItems.put(clasz, (Fragment) fragment);
-        }
-        catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void addFragment(Class<?> fragmentType, Object... params) {
-        try {
-            if (params != null && params.length > 0) {
-                Class<?>[] classes = new Class[params.length];
-                for (int i = 0; i < params.length; i++) {
-                    Object obj = params[i];
-                    classes[i] = Class.forName(obj.getClass().getName());
-                }
-
-                Constructor<?> constructor = fragmentType.getDeclaredConstructor(classes);
-                Fragment fragment = (Fragment) constructor.newInstance(params);
-                this.m_vItems.put(fragmentType, fragment);
-            }
-            else {
-                addFragment(fragmentType);
-            }
-        }
-        catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public void addFragment(Class<?> fragmentType, Object... params) {
+//        try {
+//            if (params != null && params.length > 0) {
+//                Class<?>[] classes = new Class[params.length];
+//                for (int i = 0; i < params.length; i++) {
+//                    Object obj = params[i];
+//                    classes[i] = Class.forName(obj.getClass().getName());
+//                }
+//
+//                Constructor<?> constructor = fragmentType.getDeclaredConstructor(classes);
+//                Fragment fragment = (Fragment) constructor.newInstance(params);
+//                this.m_vItems.put(fragmentType, fragment);
+//            }
+//            else {
+//                addFragment(fragmentType);
+//            }
+//        }
+//        catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     @NonNull
     @Override

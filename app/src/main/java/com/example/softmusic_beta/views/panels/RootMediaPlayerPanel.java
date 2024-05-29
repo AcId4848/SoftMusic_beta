@@ -7,34 +7,24 @@ import android.media.MediaMetadata;
 import android.media.MediaPlayer;
 import android.media.session.PlaybackState;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.extensions.bottomsheet.CustomBottomSheetBehavior;
 import com.example.softmusic_beta.R;
 import com.example.softmusic_beta.theme.AsyncPaletteBuilder;
 import com.example.softmusic_beta.theme.interfaces.PaletteStateListener;
-import com.example.softmusic_beta.ui.adapters.StateFragmentAdapter;
-import com.example.softmusic_beta.ui.fragments.FragmentAllMusic;
-import com.example.softmusic_beta.ui.fragments.FragmentHome;
-import com.example.softmusic_beta.ui.fragments.FragmentLibrary;
 import com.example.softmusic_beta.views.MediaPlayerBarView;
 import com.example.softmusic_beta.views.MediaPlayerView;
 import com.realgear.multislidinguppanel.BasePanelView;
-import com.realgear.multislidinguppanel.Adapter;
 import com.realgear.multislidinguppanel.IPanel;
 import com.realgear.multislidinguppanel.MultiSlidingUpPanelLayout;
-import com.realgear.readable_bottom_bar.ReadableBottomBar;
-
 public class RootMediaPlayerPanel extends BasePanelView implements PaletteStateListener {
-
-    private ViewPager2 rootViewPager;
-    private ReadableBottomBar rootNavigationBar;
 
     private MediaPlayerView mMediaPlayerView;
 
@@ -122,6 +112,7 @@ public class RootMediaPlayerPanel extends BasePanelView implements PaletteStateL
 
     public void onMetadataChanged(MediaMetadata metadata) {
         this.mMediaPlayerBarView.onMetadataChanged(metadata);
+        this.mMediaPlayerView.onMetadataChanged(metadata);
 
         Bitmap bitmap = metadata.getBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART);
         this.mAsyncPaletteBuilder.onStartAnimation(bitmap);
@@ -134,6 +125,7 @@ public class RootMediaPlayerPanel extends BasePanelView implements PaletteStateL
         }
 
         this.mMediaPlayerBarView.onPlaybackStateChanged(state);
+        this.mMediaPlayerView.onPlaybackStateChanged(state);
     }
 
     @Override
@@ -144,6 +136,7 @@ public class RootMediaPlayerPanel extends BasePanelView implements PaletteStateL
     @Override
     public void onUpdateVibrantDarkColor(int vibrantDarkColor) {
         this.mMediaPlayerBarView.onUpdateVibrantDarkColor(vibrantDarkColor);
+        this.mMediaPlayerView.onUpdateVibrantDarkColor(vibrantDarkColor);
     }
 
     @Override

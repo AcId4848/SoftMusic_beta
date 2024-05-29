@@ -1,10 +1,6 @@
 package com.example.softmusic_beta.views;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.Icon;
 import android.media.MediaMetadata;
 import android.media.session.PlaybackState;
@@ -18,11 +14,9 @@ import androidx.annotation.IdRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.example.mediaplayer.PlaybackManager;
 import com.example.softmusic_beta.R;
-import com.example.softmusic_beta.ui.MediaPlayerThread;
+import com.example.softmusic_beta.ui.MediaPlayerManager;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
-import com.realgear.multislidinguppanel.MultiSlidingUpPanelLayout;
 
 public class MediaPlayerBarView {
     public static final int STATE_NORMAL = 0;
@@ -64,7 +58,7 @@ public class MediaPlayerBarView {
 
     private void onInit() {
         this.mImageBtn_PlayPause.setOnClickListener(v -> {
-            MediaPlayerThread.getInstance().getCallback().onClickPlayPause();
+            MediaPlayerManager.getInstance().getCallback().onClickPlayPause();
         });
     }
 

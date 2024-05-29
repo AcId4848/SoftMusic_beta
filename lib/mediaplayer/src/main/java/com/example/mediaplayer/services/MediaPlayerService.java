@@ -8,6 +8,7 @@ import android.media.session.MediaSession;
 import android.media.session.PlaybackState;
 import android.os.Bundle;
 import android.service.media.MediaBrowserService;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -124,7 +125,9 @@ public class MediaPlayerService extends MediaBrowserService implements PlaybackC
         this.m_vPlaybackManager.onPlayIndex(index);
     }
 
+    // TODO: complete this function
     public void onFavourite() { this.m_vPlaybackManager.onFavourite();}
+
     public void onPlay(List<Integer> queue, int index) {
         this.m_vPlaybackManager.onSetQueue(queue);
         this.m_vPlaybackManager.onPlayIndex(index);

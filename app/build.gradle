@@ -38,6 +38,8 @@ dependencies {
     implementation project(path: ':lib:extensions')
     implementation project(path: ':lib:icons_pack')
     implementation project(path: ':lib:mediaplayer')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'org.testng:testng:6.9.6'
 
     def glide_version = "4.15.1"
 

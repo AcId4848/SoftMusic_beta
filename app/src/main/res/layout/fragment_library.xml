@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/black">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,8 +13,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:text="Плейлисты"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_settings_library"
+            app:layout_constraintHorizontal_bias="0.612"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageButton
-            android:id="@+id/settings_button_library"
+            android:id="@+id/btn_settings_library"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="startSettingsLibrary"
@@ -24,5 +38,59 @@
             app:tint="#FFF" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <SearchView
+        android:id="@+id/search_album"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:queryHint="Поиск плейлистов и альбомов"
+        android:background="@drawable/search_view_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:flow_horizontalBias="0.5"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        android:iconifiedByDefault="false">
+
+    </SearchView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Мои плейлисты"
+        android:layout_marginStart="25sp"
+        android:layout_marginTop="15sp"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/search_album" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <include
+            layout="@layout/item_library_album_view"/>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Soft-плейлисты"
+        android:layout_marginStart="25sp"
+        android:layout_marginTop="15sp"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/coordinatorLayout" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

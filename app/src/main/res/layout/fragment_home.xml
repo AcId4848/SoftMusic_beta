@@ -13,8 +13,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:layout_width="85dp"
+            android:layout_height="31dp"
+            android:text="Главная"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_settings_home"
+            app:layout_constraintHorizontal_bias="0.612"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageButton
-            android:id="@+id/settings_button_home"
+            android:id="@+id/btn_settings_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
@@ -43,9 +55,9 @@
         <TextView
             android:layout_width="188sp"
             android:layout_height="172sp"
-            android:layout_marginTop="240sp"
+            android:layout_marginTop="230sp"
             android:gravity="center"
-            android:text="Пока что можете воспользоваться плеером, вкладками Плейлисты и Вся музыка. Также работают эквалайзер, просмотр текста песни и настройки."
+            android:text="Пока что можете воспользоваться плеером, вкладками Плейлисты и Вся музыка."
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"

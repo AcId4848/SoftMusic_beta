@@ -18,7 +18,7 @@ import androidx.annotation.RequiresApi;
 import com.example.mediaplayer.interfaces.PlaybackCallback;
 import com.example.mediaplayer.model.Song;
 import com.example.mediaplayer.utils.PlaybackListener;
-import com.example.mediaplayer.utils.PlaybackSubThread;
+import com.example.mediaplayer.utils.PlaybackThread;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -29,7 +29,7 @@ import java.util.TreeMap;
 public class PlaybackManager {
     public static final String TAG = PlaybackManager.class.getSimpleName();
 
-    public final int THREAD_UPDATE_INTERVAL = 350;
+    public final int THREAD_UPDATE_INTERVAL = 500;
 
     public void onFavourite() {
     }
@@ -65,7 +65,7 @@ public class PlaybackManager {
 
     private List<Integer> m_vQueue;
     private TreeMap<Integer, Song> m_vSongs;
-    private List<PlaybackSubThread> m_vThreads;
+    private List<PlaybackThread> m_vThreads;
 
     public PlaybackManager(Context context, PlaybackCallback playbackCallback) {
         this.m_vContext = context;
@@ -128,7 +128,7 @@ public class PlaybackManager {
 
     private void onStoppingThreads() {
         if (!this.m_vThreads.isEmpty()) {
-            for (PlaybackSubThread thread : this.m_vThreads) {
+            for (PlaybackThread thread : this.m_vThreads) {
                 thread.onStop();
                 this.m_vThreads.remove(thread);
             }
@@ -142,8 +142,8 @@ public class PlaybackManager {
         this.onStoppingThreads();
 
         if (this.m_vPlaybackState == PlaybackState.STATE_PLAYING) {
-            PlaybackSubThread thread = new PlaybackSubThread(THREAD_UPDATE_INTERVAL, this);
-            thread.getWorker().setName("Playback Thread");
+            PlaybackThread thread = new PlaybackThread(THREAD_UPDATE_INTERVAL, this);
+            thread.getWorker().setName("PlaybackThread");
             this.m_vThreads.add(thread);
             thread.onStart();
         } else {
@@ -252,7 +252,7 @@ public class PlaybackManager {
 
 
     public void onPlayIndex(int queueIndex) {
-        Log.i(TAG, "Current Index > " + this.m_vCurrentQueueIndex);
+        Log.i(TAG, "Previous Song Index: " + this.m_vCurrentQueueIndex);
 
         int id = this.m_vQueue.get(queueIndex);
 
@@ -290,7 +290,7 @@ public class PlaybackManager {
         else {
             this.onStartMediaPlayer();
         }
-        Log.i(TAG, "Current Index AP > " + this.m_vCurrentQueueIndex);
+        Log.i(TAG, "Playing Song Index: " + this.m_vCurrentQueueIndex);
     }
     public void onPause() {
         if (this.m_vMediaPlayer == null)

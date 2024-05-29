@@ -3,6 +3,7 @@ package com.example.softmusic_beta.ui.fragments;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -72,6 +73,7 @@ public class FragmentAllMusic extends Fragment {
         List<BaseRecyclerViewItem> items = new ArrayList<>();
 
         for (Song song : m_vSongs) {
+            Log.i(Thread.currentThread().getName(), "Added song <" + song.getTitle() + "> id : " + song.getId());
             items.add(new SongRecyclerViewItem(song));
         }
 
@@ -125,6 +127,7 @@ public class FragmentAllMusic extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    // TODO: fix the song search
     private void filterList(String text, List<Song> songs) {
         List<BaseRecyclerViewItem> filteredList = new ArrayList<>();
 

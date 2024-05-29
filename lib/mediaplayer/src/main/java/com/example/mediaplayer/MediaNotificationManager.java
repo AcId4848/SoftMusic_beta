@@ -17,6 +17,7 @@ import android.media.MediaMetadata;
 import android.media.session.MediaSession;
 import android.media.session.PlaybackState;
 import android.os.Build;
+import android.util.Log;
 
 import com.example.mediaplayer.services.MediaPlayerService;
 import com.example.mediaplayer.statics.IntentFields;

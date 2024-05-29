@@ -1,10 +1,11 @@
 package com.example.softmusic_beta.ui.adapters;
 
+import android.util.Log;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.example.softmusic_beta.ui.UIThread;
+import com.example.softmusic_beta.ui.UIManager;
 import com.example.softmusic_beta.ui.adapters.helpers.BaseViewHelper;
 import com.example.softmusic_beta.ui.adapters.models.BaseRecyclerViewItem;
 import com.example.softmusic_beta.ui.adapters.models.SongRecyclerViewItem;
@@ -22,6 +23,7 @@ public class LibraryRecyclerViewAdapter extends BaseRecyclerViewAdapter{
     @NonNull
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         BaseRecyclerViewItem.ItemType itemType = BaseRecyclerViewItem.ItemType.values()[viewType];
 
         switch (itemType) {
@@ -31,15 +33,16 @@ public class LibraryRecyclerViewAdapter extends BaseRecyclerViewAdapter{
             default:
                 return null;
         }
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
 
-        holder.itemView.setOnClickListener((v) -> {
+        holder.itemView.setOnClickListener(v -> {
             int i = position;
-            UIThread.getInstance().getMediaPlayerThread().getCallback().onClickPlay(i, getQueue());
+            UIManager.getInstance().getMediaPlayerManager().getCallback().onClickPlay(i, getQueue());
         });
     }
 

@@ -10,8 +10,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.example.softmusic_beta.ui.UIThread;
-import com.example.softmusic_beta.utils.PermissionManager;
+import com.example.softmusic_beta.ui.UIManager;
 
 import android.Manifest;
 import android.view.View;
@@ -19,7 +18,7 @@ import android.widget.SearchView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private UIThread m_vThread;
+    private UIManager m_vManager;
     private SearchView m_vSearchView;
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
@@ -27,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-      PermissionManager.requestPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE, 100);
-      PermissionManager.requestPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE, 100);
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
 //            if (!Environment.isExternalStorageManager()) {
@@ -59,8 +56,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
         intent.putExtra(Settings.EXTRA_CHANNEL_ID, getPackageName());
         startActivity(intent);
-
-        this.m_vThread = new UIThread(this);
+        this.m_vManager = new UIManager(this);
 
     }
 

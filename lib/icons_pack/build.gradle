@@ -8,9 +8,6 @@ android {
 
     defaultConfig {
         minSdk 28
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -29,4 +26,5 @@ dependencies {
 
     implementation libs.appcompat
     implementation libs.material
+    implementation libs.monitor
 }

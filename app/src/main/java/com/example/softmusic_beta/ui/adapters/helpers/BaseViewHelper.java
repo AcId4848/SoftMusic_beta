@@ -15,7 +15,7 @@ public class BaseViewHelper {
     private final static LinkedHashMap<Class<?>, Integer> m_vLayoutIds = new LinkedHashMap<>();
 
     static {
-        m_vLayoutIds.put(SongViewHolder.class, R.layout.item_library_song_view);
+        m_vLayoutIds.put(SongViewHolder.class, R.layout.item_allmusic_song_view);
     }
 
     private static int getLayoutId(Class<?> viewHolder) {

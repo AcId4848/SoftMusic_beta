@@ -3,6 +3,7 @@ package com.example.mediaplayer;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.session.MediaController;
+import android.util.Log;
 
 import com.example.mediaplayer.interfaces.PlayerCallback;
 import com.example.mediaplayer.statics.IntentFields;
@@ -42,7 +43,8 @@ public class CorePlayer {
 
             @Override
             public void onClickPlayNext() {
-
+                Intent intent = new Intent(IntentFields.INTENT_PLAY_NEXT);
+                CorePlayer.this.m_vActivity.sendBroadcast(intent);
             }
 
             @Override
@@ -53,7 +55,8 @@ public class CorePlayer {
 
             @Override
             public void onClickPlayPrev() {
-
+                Intent intent = new Intent(IntentFields.INTENT_PLAY_PREV);
+                CorePlayer.this.m_vActivity.sendBroadcast(intent);
             }
 
             @Override

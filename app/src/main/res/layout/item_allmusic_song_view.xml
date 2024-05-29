@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:id="@+id/item_root_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/item_library_song_padding"
-    android:paddingHorizontal="@dimen/item_library_song_padding"
+    android:paddingTop="@dimen/item_allmusic_song_padding"
+    android:paddingHorizontal="@dimen/item_allmusic_song_padding"
     android:orientation="horizontal">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_song_art_image_view_parent"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/item_library_song_art_size"
+        android:layout_height="@dimen/item_allmusic_song_art_size"
         android:background="@drawable/audio_file_shape">
 
         <ImageView
@@ -32,7 +32,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:paddingHorizontal="@dimen/item_library_song_padding"
+        android:paddingHorizontal="@dimen/item_allmusic_song_padding"
         android:orientation="vertical"
         android:gravity="center_vertical">
 

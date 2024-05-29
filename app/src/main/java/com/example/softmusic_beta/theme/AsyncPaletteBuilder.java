@@ -1,6 +1,5 @@
 package com.example.softmusic_beta.theme;
 
-import android.animation.Animator;
 import android.animation.ArgbEvaluator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;

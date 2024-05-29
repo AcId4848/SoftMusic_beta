@@ -28,6 +28,7 @@ public class SongViewHolder extends BaseViewHolder {
     private TextView m_vTextView_Artist;
     private ImageView m_vImageView_Art;
 
+    private TextView m_vDuration;
     public SongViewHolder(@NonNull View itemView) {
         super(itemView);
 
@@ -35,7 +36,9 @@ public class SongViewHolder extends BaseViewHolder {
         this.m_vImageView_Parent = findViewById(R.id.item_song_art_image_view_parent);
 
         this.m_vTextView_Title = findViewById(R.id.item_song_title_text_view);
-        this.m_vTextView_Artist =findViewById(R.id.item_song_artist_text_view);
+        this.m_vTextView_Artist = findViewById(R.id.item_song_artist_text_view);
+
+        this.m_vDuration = findViewById(R.id.item_song_duration);
 
         this.m_vImageView_Art = findViewById(R.id.item_song_art_image_view);
     }
@@ -44,8 +47,14 @@ public class SongViewHolder extends BaseViewHolder {
     public void onBindViewHolder(BaseRecyclerViewItem viewItem) {
         SongRecyclerViewItem item = (SongRecyclerViewItem) viewItem;
 
+        long duration_minutes = viewItem.getDuration() / 60000;
+        long duration_seconds = (viewItem.getDuration()
+                - viewItem.getDuration() / 60000 * 60000) / 1000;
         this.m_vTextView_Title.setText(viewItem.getTitle());
         this.m_vTextView_Artist.setText(viewItem.getArtistName());
+        this.m_vDuration.setText(String.valueOf(duration_minutes) + ":"
+                + String.valueOf((duration_seconds > 10 ? duration_seconds : "0"
+                + String.valueOf(duration_seconds))));
         Glide.with(itemView.getContext())
                 .load(new AudioFileCover(item.getFilePath()))
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -62,7 +71,7 @@ public class SongViewHolder extends BaseViewHolder {
                 break;
             case LIST:
                 this.m_vRootView.setOrientation(LinearLayout.HORIZONTAL);
-                this.m_vImageView_Parent.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, itemView.getResources().getDimensionPixelOffset(R.dimen.item_library_song_art_size)));
+                this.m_vImageView_Parent.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, itemView.getResources().getDimensionPixelOffset(R.dimen.item_allmusic_song_art_size)));
                 break;
         }
     }

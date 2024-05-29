@@ -3,21 +3,22 @@ package com.example.mediaplayer.utils;
 import android.annotation.SuppressLint;
 import android.media.session.PlaybackState;
 import android.os.SystemClock;
+import android.util.Log;
 
 import com.example.mediaplayer.PlaybackManager;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class PlaybackSubThread implements Runnable {
+public class PlaybackThread implements Runnable {
 
     private AtomicBoolean isRunning = new AtomicBoolean(false);
     private AtomicBoolean isStopped = new AtomicBoolean(false);
 
     private final int m_vInterval;
     private final Thread m_vWorker;
-    private final PlaybackManager m_vPlaybackManager;
+    private PlaybackManager m_vPlaybackManager;
 
-    public PlaybackSubThread(int interval, PlaybackManager playbackManager) {
+    public PlaybackThread(int interval, PlaybackManager playbackManager) {
         this.m_vPlaybackManager = playbackManager;
         this.m_vWorker = new Thread(this);
         this.m_vInterval = interval;
@@ -34,17 +35,21 @@ public class PlaybackSubThread implements Runnable {
 
             }
 
-            int state = this.m_vPlaybackManager.getPlaybackState();
-            long actions = this.m_vPlaybackManager.getAvailableActions();
-            int position = this.m_vPlaybackManager.getPlaybackPosition();
 
-            if (this.m_vPlaybackManager.isPlayingOrPaused()) {
+            int state = m_vPlaybackManager.getPlaybackState();
+            long actions = m_vPlaybackManager.getAvailableActions();
+            int position = m_vPlaybackManager.getPlaybackPosition();
+            Log.i("Playback Thread", "Current position : " + String.valueOf(position) +
+                    "ms");
+
+
+            if (m_vPlaybackManager.isPlayingOrPaused()) {
                 @SuppressLint("Wrong constants")
                 PlaybackState.Builder builder = new PlaybackState.Builder()
                         .setActions(actions)
                         .setState(state, position, 1.0F, SystemClock.elapsedRealtime());
 
-                this.m_vPlaybackManager.getPlaybackCallback().onPlaybackStateChanged(builder.build());
+                m_vPlaybackManager.getPlaybackCallback().onPlaybackStateChanged(builder.build());
                 if (state != PlaybackState.STATE_PLAYING) {
                     this.onStop();
                 }

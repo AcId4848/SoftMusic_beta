@@ -12,7 +12,6 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.util.List;
-import java.util.ListIterator;
 
 public class MediaPlayerBroadcastHelper {
     private final MediaPlayerService m_vService;

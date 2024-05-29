@@ -15,6 +15,7 @@ constraintlayout = "2.1.4"
 multiSlidingUpPanel = "1.3.6"
 cardview = "1.0.0"
 roomRuntime = "2.5.1"
+monitor = "1.6.1"
 
 [libraries]
 appcompat-v142 = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
@@ -33,6 +34,7 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 multi-sliding-up-panel = { module = "com.github.realgearinc:multi-sliding-up-panel", version.ref = "multiSlidingUpPanel" }
 cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+monitor = { group = "androidx.test", name = "monitor", version.ref = "monitor" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

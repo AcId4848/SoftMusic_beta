@@ -3,8 +3,11 @@
     <dimen name="mediaplayerbar_height">76dp</dimen>
     <dimen name="navigation_bar_height">54dp</dimen>
 
-    <dimen name="item_library_song_art_size">74dp</dimen>
-    <dimen name="item_library_song_padding">8dp</dimen>
+    <dimen name="item_allmusic_song_art_size">74dp</dimen>
+    <dimen name="item_allmusic_song_padding">8dp</dimen>
+
+    <dimen name="item_library_album_art_size">200dp</dimen>
+    <dimen name="item_library_album_padding">5dp</dimen>
 
     <dimen name="font_size_md">15sp</dimen>
     <dimen name="font_size_sm">13sp</dimen>

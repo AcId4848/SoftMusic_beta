@@ -18,34 +18,35 @@ import com.realgear.multislidinguppanel.PanelStateListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UIThread {
-    private static UIThread instance;
+public class UIManager {
+    private static UIManager instance;
 
     private final MainActivity m_vMainActivity;
 
     private MultiSlidingUpPanelLayout m_vMultiSlidingPanel;
 
-    private MediaPlayerThread m_vMediaPlayerThread;
-    public UIThread(MainActivity activity) {
+    private MediaPlayerManager m_vMediaPlayerManager;
+    public UIManager(MainActivity activity) {
         instance = this;
 
         this.m_vMainActivity = activity;
         onCreate();
 
-        this.m_vMediaPlayerThread = new MediaPlayerThread(this.m_vMainActivity, getCallback());
-        this.m_vMediaPlayerThread.onStart();
+        this.m_vMediaPlayerManager = new MediaPlayerManager(this.m_vMainActivity, getCallback());
+        this.m_vMediaPlayerManager.onStart();
     }
 
     public MediaController.Callback getCallback() {
         return new MediaController.Callback() {
+
             @Override
             public void onPlaybackStateChanged(@Nullable PlaybackState state) {
-                UIThread.this.m_vMultiSlidingPanel.getAdapter().getItem(RootMediaPlayerPanel.class).onPlaybackStateChanged(state);
+                UIManager.this.m_vMultiSlidingPanel.getAdapter().getItem(RootMediaPlayerPanel.class).onPlaybackStateChanged(state);
             }
 
             @Override
             public void onMetadataChanged(@Nullable MediaMetadata metadata) {
-                UIThread.this.m_vMultiSlidingPanel.getAdapter().getItem(RootMediaPlayerPanel.class).onMetadataChanged(metadata);
+                UIManager.this.m_vMultiSlidingPanel.getAdapter().getItem(RootMediaPlayerPanel.class).onMetadataChanged(metadata);
             }
         };
     }
@@ -64,12 +65,12 @@ public class UIThread {
         m_vMultiSlidingPanel.setAdapter(new Adapter(this.m_vMainActivity, items));
     }
 
-    public static UIThread getInstance() {
+    public static UIManager getInstance() {
         return instance;
     }
 
-    public MediaPlayerThread getMediaPlayerThread() {
-        return this.m_vMediaPlayerThread;
+    public MediaPlayerManager getMediaPlayerManager() {
+        return this.m_vMediaPlayerManager;
     }
 
     public <T extends android.view.View> T findViewById(@IdRes int id) {
